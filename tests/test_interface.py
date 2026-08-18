@@ -6,7 +6,7 @@
     python tests/test_interface.py
 
 说明：
-- 入参构造使用接口文档的字段名（8 个集合）
+- 入参构造使用接口文档的字段名（9 个集合）
 - 通过 Flask test_client 直接调用路由，无需启动服务器
 - 出参校验字段与接口文档 detectPlanSchedulingchList 完全一致
 """
@@ -22,11 +22,11 @@ from server import create_app  # noqa: E402
 app = create_app()
 INTERFACE_PATH = '/restful/busiInterface/ipsService/detectPlanScheduling'
 
-# 接口文档出参 detectPlanSchedulingchList 的字段清单
+# 接口文档出参 detectPlanSchedulingchList 的字段清单（接口说明v2.0 §1.3，16 字段）
 EXPECTED_OUTPUT_FIELDS = [
     'sysNo', 'sysName', 'deviceType', 'deviceNo', 'arriveBatchNo',
-    'equipCateg', 'equipCls', 'equipCode', 'equipDesc', 'detectSchemeId',
-    'projectedStartTime', 'projectedEndTime', 'detectPlanQty',
+    'equipCateg', 'equipCls', 'equipCode', 'equipDesc', 'aimEquipCode',
+    'detectSchemeId', 'projectedStartTime', 'projectedEndTime', 'detectPlanQty',
     'demandFlag', 'weekDayStartAndEnd',
 ]
 
@@ -97,14 +97,26 @@ def test_normal():
         assert row['sysNo'] == '2001'
         assert row['sysName']
         assert row['deviceNo']
-        assert row['equipCls'] == '智能量测终端'
+        # 8.16 码值适配：equipCls / equipCateg 由中文名改输出 VW_* 编码（零填充字符串）
+        assert row['equipCls'] == '19', f"equipCls 应为 VW_EQUIP_CLS 编码: {row}"
+        assert row['equipCateg'] == '09', f"equipCateg 应为 VW_EQUIP_CATEG 编码: {row}"
+        # deviceType 来自 检定仓类型编码（VW_DEVICE_TYPE 码）；本用例 100 台分落
+        # 仓类型 03（终端检定仓）与 05（三相表兼容终端检定仓）两仓
+        assert row['deviceType'] in ('03', '05'), f"deviceType 应为 VW_DEVICE_TYPE 编码: {row}"
         assert row['projectedStartTime'] and row['projectedEndTime']
         assert row['detectPlanQty'] > 0
         assert row['demandFlag'] in ('0', '1')
+        # 需求设备=自身码，非需求设备=分配目标码（v2.0 §1.3）
+        assert row['aimEquipCode'] == row['equipCode'], f"aimEquipCode 应等于 equipCode: {row}"
+        # 8.17：detectSchemeId 来自 detectSchList.detectSchemeId（spec.参数标识）
+        assert row['detectSchemeId'] == 1001, f"detectSchemeId 应为入参方案标识 1001: {row}"
 
     total = sum(r['detectPlanQty'] for r in rows)
     assert total == 100, f"总排程量 {total} 应为 100"
-    print(f"[正常] 生成 {len(rows)} 条排程明细，总量 {total} - OK")
+    assert set(r['deviceType'] for r in rows) == {'03', '05'}, \
+        f"100 台应分落两仓（deviceType 03/05）: {set(r['deviceType'] for r in rows)}"
+    print(f"[正常] 生成 {len(rows)} 条排程明细，总量 {total}，aimEquipCode=自身码，"
+          f"equipCls/equipCateg/deviceType 均为码值 - OK")
 
 
 def test_equipcls_code_spec_category():
@@ -114,7 +126,7 @@ def test_equipcls_code_spec_category():
     spec.设备分类，导致与算法 chambers 的中文分类名匹配不上而全部跳过、返回空集。
     现在应推断出中文分类名；equipCls 已是中文名时兜底保留。
     """
-    from data.reader import read_json
+    from modules.detect.reader import read_json
     payload = {
         "deviceParaList": [
             {"sysNo": "2001", "sysName": "电表兼容终端线",
@@ -132,6 +144,10 @@ def test_equipcls_code_spec_category():
             {"arriveBatchNo": "B0003", "equipCateg": "C03", "equipCls": "智能量测终端",
              "equipCode": "EQ-TERM-2", "equipDesc": "终端", "arriveQty": 3,
              "arriveDate": "2026-08-06 00:00:00", "detectEquipType": None},
+            # 0812 真实场景：equipCls 是编码且 detectEquipType 为空，靠 码→名 兜底
+            {"arriveBatchNo": "B0004", "equipCateg": "C01", "equipCls": "01",
+             "equipCode": "EQ-SINGLE-1", "equipDesc": "单相表", "arriveQty": 2,
+             "arriveDate": "2026-08-06 00:00:00", "detectEquipType": None},
         ],
         "detectSchList": [],
         "qualifiedStockList": [], "unqualifiedStockList": [],
@@ -147,7 +163,46 @@ def test_equipcls_code_spec_category():
     assert spec.loc['EQ-CODE-1', '设备分类'] == '单相电能表', "编码 equipCls=01 + detectEquipType=01 应推断为单相电能表"
     assert spec.loc['EQ-HGQ-1', '设备分类'] == '10kV电流互感器', "编码 equipCls=06 + detectEquipType=06 应推断为10kV电流互感器"
     assert spec.loc['EQ-TERM-2', '设备分类'] == '智能量测终端', "equipCls 已是中文名时应兜底保留"
-    print("[equipCls编码] spec 设备分类按 detectEquipType 正确推断 - OK")
+    assert spec.loc['EQ-SINGLE-1', '设备分类'] == '单相电能表', "equipCls 编码=01 且 detectEquipType 为空（0812 场景）应码→名转出单相电能表"
+    print("[equipCls编码] spec 设备分类按 detectEquipType 推断 / equipCls 码→名兜底（含 0812 空 detectEquipType 场景）- OK")
+
+
+def test_detect_scheme_id_big_code_fallback():
+    """8.17 get_detect_scheme_id 大小码匹配：小码查不到时回退大码，再查不到返回 None。"""
+    from modules.detect.constants import SchedulingConfig
+    from modules.detect.prepare import process_data
+    from modules.detect.reader import read_json
+    import modules.detect.scheduler as scheduler
+
+    payload = {
+        "deviceParaList": [
+            {"sysNo": "2001", "sysName": "单相线", "deviceType": "01",
+             "deviceNo": "DGNx001", "deviceName": "仓1",
+             "detectEquipType": "01", "posNum": 48},
+        ],
+        "dmdPlanDetList": [
+            {"planYear": "2026", "planMonth": "08", "equipCls": "01",
+             "equipCode": "SMALL-1", "pEquipCode": "BIG-1", "sumQty": 1},
+        ],
+        "arriveBatchList": [],
+        # detectSchList 只挂大码的方案标识；小码须经 大小码映射 回退命中
+        "detectSchList": [
+            {"equipCode": "BIG-1", "detectType": "03", "detectSchemeId": 3003, "schTime": 108},
+        ],
+        "qualifiedStockList": [], "unqualifiedStockList": [],
+        "scheduleTimeList": [
+            {"workDay": "2026-08-18", "startTime": "09:00", "endTime": "17:00"},
+        ],
+        "scheduleConfigList": [
+            {"sysNo": "2001", "sysName": "单相线", "timeInterval": 300, "overtime": 0},
+        ],
+    }
+    dfs = read_json(payload)
+    process_data(dfs, SchedulingConfig())
+    assert scheduler.get_detect_scheme_id('BIG-1') == 3003, "大码直查应命中"
+    assert scheduler.get_detect_scheme_id('SMALL-1') == 3003, "小码应经大小码映射回退命中"
+    assert scheduler.get_detect_scheme_id('NOPE') is None, "无映射应返回 None"
+    print("[detectSchemeId] 直查 / 大小码回退 / 无映射返回 None - OK")
 
 
 def test_empty_body():
@@ -185,6 +240,7 @@ def test_invalid_json():
 if __name__ == '__main__':
     test_normal()
     test_equipcls_code_spec_category()
+    test_detect_scheme_id_big_code_fallback()
     test_empty_body()
     test_missing_required_sets()
     test_invalid_json()

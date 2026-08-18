@@ -1,0 +1,21 @@
+# 版本控制
+.git
+.gitignore
+.idea
+
+# Python 缓存
+__pycache__
+*.py[cod]
+*.egg-info
+
+# 测试与文档（运行时不需要，减小镜像）
+tests/
+docs/
+*.md
+Dockerfile
+.dockerignore
+
+# 样例数据与 Office 临时文件
+*.xlsx
+*.docx
+~$*

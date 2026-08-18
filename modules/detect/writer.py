@@ -1,9 +1,9 @@
 """
-数据写入适配
-============
+检定排程 — 数据写入适配
+========================
 把 build_output_dataframes() 产出的 {key: DataFrame} 适配成两种输出格式：
 - write_excel : 写入 Excel 多 sheet（离线兑底 / 开发验证），返回输出文件路径
-- write_json  : 构造成接口文档（接口说明.md）定义的出参 JSON（生产环境），返回出参字典
+- write_json  : 构造成接口文档（接口说明v2.0）定义的出参 JSON（生产环境），返回出参字典
 
 不做多余封装，只做格式适配 + 异常处理。
 """
@@ -16,10 +16,7 @@ from typing import Dict
 import numpy as np
 import pandas as pd
 
-from .constants import DEVICE_TYPE_MAP, DEMAND_FLAG_YES, DEMAND_FLAG_NO
-
-# 检定仓类型 名称 -> 编码 反向映射（出参 deviceType 要求 VW_DEVICE_TYPE 编码）
-_DEVICE_TYPE_REV = {v: k for k, v in DEVICE_TYPE_MAP.items()}
+from .constants import DEMAND_FLAG_YES, DEMAND_FLAG_NO
 
 
 # ==================================================================
@@ -39,11 +36,40 @@ def _safe_str(value) -> str:
     return str(value)
 
 
+def _fmt_code(value) -> str:
+    """码值 -> 2 位零填充字符串（接口格式 '01' / '19'）；空值 -> ''。
+
+    出参 equipCls / equipCateg / deviceType 均要求 VW_* 编码的零填充字符串
+    （8.16 输出行的 设备分类编码 / 设备类别编码 / 检定仓类型编码 为 int 码）。
+    """
+    if value is None or pd.isna(value):
+        return ''
+    if isinstance(value, (int, np.integer)):
+        return f"{int(value):02d}"
+    if isinstance(value, (float, np.floating)):
+        return f"{int(value):02d}" if float(value).is_integer() else str(float(value))
+    return str(value).strip()
+
+
 def _fmt_dt(value) -> str:
     """时间 -> 'yyyy-MM-dd HH:mm:ss'；空值 -> ''。"""
     if value is None or pd.isna(value):
         return ''
     return pd.Timestamp(value).strftime('%Y-%m-%d %H:%M:%S')
+
+
+def _fmt_scheme_id(value):
+    """detectSchemeId -> int（接口 NUMBER 类型）；空值/NaN -> ''。
+
+    8.17 起算法输出行携带 检测方案标识（spec.参数标识）；查不到的设备码
+    返回空串（与 8.17 原脚本一致）。
+    """
+    if value is None or value == '' or (isinstance(value, float) and pd.isna(value)):
+        return ''
+    try:
+        return int(value)
+    except (ValueError, TypeError):
+        return ''
 
 
 def _row_get(row: pd.Series, key: str):
@@ -77,23 +103,30 @@ def write_excel(output_dfs: Dict[str, pd.DataFrame],
 # ==================================================================
 
 def _to_api_row(row: pd.Series) -> dict:
-    device_type_name = _safe_str(_row_get(row, '检定仓类型'))
     demand_flag = _safe_str(_row_get(row, '是否为需求优先'))
     return {
         'sysNo': _safe_str(_row_get(row, '检定线ID')),
         'sysName': _safe_str(_row_get(row, '检定线名称')),
-        'deviceType': _DEVICE_TYPE_REV.get(device_type_name, device_type_name),
+        # 检定仓类型编码：8.16 起直接取 检定仓类型编码（VW_DEVICE_TYPE 码 1-9），
+        # 替代原先的仓类型名称→码反查（仓类型名称有三套口径，反查不可靠）
+        'deviceType': _fmt_code(_row_get(row, '检定仓类型编码')),
         'deviceNo': _safe_str(_row_get(row, '检定仓编号')),
         'arriveBatchNo': _safe_str(_row_get(row, '到货批次号')),
-        'equipCateg': '',                       # 待企业确认字段口径
-        'equipCls': _safe_str(_row_get(row, '设备类型')),
+        # 设备类别编码：8.16 补缺口（1电能表 / 2互感器 / 9计量自动化终端）
+        'equipCateg': _fmt_code(_row_get(row, '设备类别编码')),
+        # 设备分类编码（VW_EQUIP_CLS）：8.16 起由中文名改输出码（对齐接口 v2.0 出参定义）
+        'equipCls': _fmt_code(_row_get(row, '设备分类编码')),
         'equipCode': _safe_str(_row_get(row, '设备码')),
         'equipDesc': '',                        # 待企业确认字段口径
-        'detectSchemeId': '',                   # 待企业确认字段口径
+        # 8.11 已生产"目标设备类型码"：需求设备=自身码，非需求设备=分配目标码（v2.0 §1.3）
+        'aimEquipCode': _safe_str(_row_get(row, '目标设备类型码')),
+        # 检定方案标识：8.17 起从 spec.参数标识 取（含大小码回退），查不到返空串
+        'detectSchemeId': _fmt_scheme_id(_row_get(row, 'detectSchemeId')),
         'projectedStartTime': _fmt_dt(_row_get(row, '预计开始时间')),
         'projectedEndTime': _fmt_dt(_row_get(row, '预计完成时间')),
         'detectPlanQty': int(_row_get(row, '每批数量') or 0),
-        'demandFlag': DEMAND_FLAG_YES if demand_flag == '是' else DEMAND_FLAG_NO,
+        # 是否为需求优先：8.16 起算法输出 1/0（VW_YES_NO_FLAG），直读映射
+        'demandFlag': DEMAND_FLAG_YES if demand_flag == '1' else DEMAND_FLAG_NO,
         'weekDayStartAndEnd': '',               # 待企业确认字段口径
     }
 
@@ -104,9 +137,9 @@ def write_json(output_dfs: Dict[str, pd.DataFrame]) -> dict:
     数据来源：output_dfs['details_sorted']（检定时间明细 DataFrame），
     每一行对应一条 detectPlanSchedulingchList 记录；无明细时返回空表。
 
-    当前对接口要求但算法不生产的字段（equipCateg / equipDesc /
-    detectSchemeId / weekDayStartAndEnd）先返回空字符串，
-    待企业确认字段口径后再补齐。
+    当前对接口要求但算法不生产的字段（equipDesc / weekDayStartAndEnd）
+    先返回空字符串，待企业确认字段口径后再补齐；detectSchemeId 自 8.17 起
+    由 spec.参数标识 生产（查不到返空串）。
     """
     detail_df = output_dfs.get('details_sorted')
     rows = []

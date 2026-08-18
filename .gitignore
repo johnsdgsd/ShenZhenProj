@@ -1,0 +1,16 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 开发环境
+.idea/
+.vscode/
+.pytest_cache/
+
+# 构建/交付产物（可由打包脚本随时重新生成，仅保留在本地）
+现场部署包/
+现场部署包.zip
+
+# 一次性交付快照（extractor 已迁入 modules/detect/extractor.py，报文在 docs/报文 有副本）
+算法数据提取交付/

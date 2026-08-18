@@ -5,7 +5,8 @@ server — 算法服务包（HTTP）
 - run_server()  : 服务启动入口（监听地址来自 config.ServiceConfig）
 
 本包只做**接口暴露 + 调用算法**，不包含业务逻辑；
-后续新增算法模块只需在 blueprints/ 下加一个蓝图并注册（见 blueprints/__init__.py）。
+算法模块在 modules/ 注册中心声明（见 modules/__init__.py），
+blueprints/__init__.py 的通用工厂自动为其生成并注册蓝图。
 """
 from __future__ import annotations
 

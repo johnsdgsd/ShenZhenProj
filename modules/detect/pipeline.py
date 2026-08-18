@@ -1,6 +1,6 @@
 """
-统一执行流水线
-==============
+检定排程 — 统一执行流水线
+==========================
 run_pipeline()：数据准备 → 主调度 → 输出构建 三步串起来，
 CLI（Excel 兑底）与 HTTP（接口 JSON）两条路径共用同一函数，
 保证命令行调用与 HTTP 调用的行为完全一致。
@@ -28,7 +28,7 @@ def run_pipeline(dfs: Dict[str, pd.DataFrame],
                  sched_cfg: SchedulingConfig = None) -> Dict[str, pd.DataFrame]:
     """执行完整排程流水线，返回输出 DataFrame 字典。
 
-    :param dfs:        data.reader 读出的 11 个 key 的 DataFrame
+    :param dfs:        reader 读出的 12 个 key 的 DataFrame
     :param sched_cfg:  算法默认参数；缺省使用 SchedulingConfig() 默认值
     :return:           build_output_dataframes 产出的 {key: DataFrame}
 

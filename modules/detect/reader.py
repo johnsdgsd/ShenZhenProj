@@ -1,26 +1,42 @@
 """
-数据读取适配
-============
-把两种输入格式统一适配成算法期望的 11 个 DataFrame：
+检定模块 — 数据读取适配
+========================
+把两种输入格式统一适配成算法期望的 12 个 DataFrame（8.11/8.16 输入模型）：
 - read_excel : 读取 Excel 文件（离线兑底 / 开发验证）
-- read_json  : 解析接口文档（接口说明.md）定义的 8 个 JSON 入参集合（生产环境）
+- read_json  : 解析接口文档（接口说明v2.0）定义的 9 个 JSON 入参集合（生产环境）
 
 不做多余封装，只做格式适配 + 异常处理。两种实现返回**同构**的
-{key: DataFrame} —— key 与列名均与 algorithm/prepare.py 的 process_data()
-期望一致，因此核心算法对两条路径完全复用。
+{key: DataFrame} —— key 与列名均与 prepare.process_data() 期望一致，
+因此核心算法对两条路径完全复用。
+
+8.11/8.16 数据层补全（相对 8.03 数据层）：
+- 新增第 12 sheet「非需求设备目标设备类型配置」（non_demand_target）
+- demand 增列 设备码 / 设备分类；arrival / unqualified 的设备分类做 equipCls 码→名转换
+- spec 增列 设备码描述；设备分类优先按 detectEquipType 推断、equipCls 码→名兜底
+  （0812 场景 detectEquipType 全空，靠 equipCls 编码转出分类，不再全 None）
+- gap_config 增列 允许加班时长（小时）
+
+8.17 数据层补全：
+- spec 增列 参数标识（detectSchList.detectSchemeId），作为出参 detectSchemeId 的数据源
 """
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Dict
 
 import pandas as pd
 
+from .category import parse_device_category_name
 from .constants import (
+    CAT_NAME_TO_DETECT_CODE,
     DETECT_EQUIP_TYPE_MAP,
     DEVICE_TYPE_MAP,
+    EQUIP_CLS_MAP,
     HUGAN_ACCESS_CODES,
 )
+
+logger = logging.getLogger(__name__)
 
 
 # ==================================================================
@@ -43,44 +59,30 @@ def _device_type_name(code):
     return DEVICE_TYPE_MAP.get(code, code)
 
 
+def _equip_cls_name(code):
+    """设备分类编码 -> 名称（VW_EQUIP_CLS）；若已是名称则原样返回。
+
+    0812 报文 equipCls 是编码（'01'/'06'/'08'/'19'…），此前原样写入导致
+    算法分类匹配不上；现在统一转成中文分类名。
+    """
+    if code is None or pd.isna(code):
+        return None
+    code = str(code).strip()
+    return EQUIP_CLS_MAP.get(code, code)
+
+
 def _infer_category(equip_type_code_or_name):
-    """从所检设备表类型推断设备分类。
+    """从所检设备表类型推断设备分类（中文名）。
 
     接口入参的 detectEquipType 是编码（01-18），先经 VW_DETECT_EQUIP_TYPE
-    转为名称，再做与 common.utils.parse_device_category 一致的关键词匹配。
-    返回 8 种设备分类之一；无法识别返回 None。
+    转为名称，再做与 8.16 parse_device_category 一致的关键词匹配。
+    返回中文分类名（prepare 再经 CAT_NAME_TO_DETECT_CODE 转码，spec 分类不直接落码）；
+    无法识别返回 None。
     """
     name = _equip_type_name(equip_type_code_or_name)
     if not name:
         return None
-    desc = name.lower()
-    if '单相电能表' in desc:
-        return '单相电能表'
-    if '三相直接' in desc or '三相互感' in desc:
-        return '三相电能表'
-    if any(k in desc for k in ('集中器', '负荷控制终端', '负荷管理终端',
-                               '配变监测终端', '智能量测终端', '厂站终端')):
-        return '智能量测终端'
-    if '10kv电压互感器' in desc:
-        return '10kV电压互感器'
-    if '20kv电压互感器' in desc:
-        return '20kV电压互感器'
-    if '10kv电流互感器' in desc:
-        return '10kV电流互感器'
-    if '20kv电流互感器' in desc:
-        return '20kV电流互感器'
-    if '低压电流互感器' in desc:
-        return '低压电流互感器'
-    return None
-
-
-# 算法认可的设备分类中文名（与 algorithm 内 parse_device_category 的产出集合一致）。
-# 用于判断 equipCls 值是否已是"可直接被算法使用"的分类名，而非未定义口径的编码。
-_KNOWN_CATEGORIES = {
-    '单相电能表', '三相电能表', '智能量测终端',
-    '10kV电压互感器', '20kV电压互感器', '10kV电流互感器', '20kV电流互感器',
-    '低压电流互感器',
-}
+    return parse_device_category_name(name)
 
 
 def _infer_access(equip_type_code):
@@ -122,9 +124,19 @@ def _to_int(value):
 # ==================================================================
 # Excel 实现（离线兑底）
 # ==================================================================
+# 8.11 脚本用 converters 强制设备码类列为字符串（避免 int/str 混用导致字典 key 不匹配）。
+# 列名转换器对不含该列的 sheet 无副作用，统一加在全部 sheet 上。
+_CONVERTERS = {
+    '设备码': str,
+    '设备规格': str,
+    '设备类型码大码': str,
+    '目标设备类型码': str,
+    '设备类型码': str,
+}
+
 
 def read_excel(file_path: Path, sheet_names: Dict[str, str]) -> Dict[str, pd.DataFrame]:
-    """读取 Excel 文件 11 个 sheet，返回 {key: DataFrame}。
+    """读取 Excel 文件 12 个 sheet，返回 {key: DataFrame}。
 
     文件不存在抛 FileNotFoundError；缺少必需 sheet 抛 ValueError（带 sheet 名）。
     """
@@ -134,9 +146,11 @@ def read_excel(file_path: Path, sheet_names: Dict[str, str]) -> Dict[str, pd.Dat
     dfs = {}
     for key, sheet in sheet_names.items():
         try:
-            dfs[key] = pd.read_excel(file_path, sheet_name=sheet)
+            dfs[key] = pd.read_excel(file_path, sheet_name=sheet, converters=_CONVERTERS)
+            logger.debug("读取 sheet「%s」（key: %s）：%d 行", sheet, key, len(dfs[key]))
         except ValueError as e:
             raise ValueError(f"Excel 缺少必需 sheet「{sheet}」（内部 key: {key}）: {e}") from e
+    logger.info("Excel 读取完成：%d 个 sheet，共 %d 行", len(dfs), sum(len(df) for df in dfs.values()))
     return dfs
 
 
@@ -144,14 +158,15 @@ def read_excel(file_path: Path, sheet_names: Dict[str, str]) -> Dict[str, pd.Dat
 # JSON 实现（接口文档入参）
 # ==================================================================
 # 入参集合 -> 内部 DataFrame 的对应关系：
-#   deviceParaList    -> overall / line_info / chamber_type / chamber_config
-#   dmdPlanDetList    -> demand / spec
-#   arriveBatchList   -> arrival / spec
-#   detectSchList     -> spec
-#   qualifiedStockList-> qualified
+#   deviceParaList       -> overall / line_info / chamber_type / chamber_config
+#   dmdPlanDetList       -> demand / spec
+#   arriveBatchList      -> arrival / spec
+#   detectSchList        -> spec
+#   qualifiedStockList   -> qualified
 #   unqualifiedStockList -> unqualified
-#   scheduleTimeList  -> time_config
-#   scheduleConfigList-> gap_config / line_info
+#   scheduleTimeList     -> time_config
+#   scheduleConfigList   -> gap_config / line_info
+#   nonDmdAimEquipCodeCfgList -> non_demand_target
 
 # 每个内部 key 对应的列名（与 Excel sheet 列名一致，保证空数据也有正确结构）
 _COLS = {
@@ -160,17 +175,37 @@ _COLS = {
     'chamber_type': ['仓类型ID', '仓类型名称'],
     'chamber_config': ['检定线ID', '检定仓编号', '仓类型ID'],
     'arrival': ['到货批次号', '设备分类', '设备规格', '数量', '预计到货日期'],
-    'demand': ['所属月份', '设备类型码大码', '申请数量'],
-    'spec': ['设备码', '设备分类', '接入方式', '自动检定时间'],
+    'demand': ['所属月份', '设备类型码大码', '申请数量', '设备码', '设备分类'],
+    'spec': ['设备码', '设备分类', '接入方式', '自动检定时间', '设备码描述', '参数标识'],
     'qualified': ['设备码', '合格品库存', '未配送库存', '安全库存'],
     'unqualified': ['到货批次号', '设备类型码', '设备分类', '可检库存'],
     'time_config': ['工作日日期', '开始时间', '结束时间'],
-    'gap_config': ['线体编号', '调度时间间隔（秒）'],
+    'gap_config': ['线体编号', '调度时间间隔（秒）', '允许加班时长（小时）'],
+    'non_demand_target': ['设备类型码大码', '目标设备类型码', '分配比例（%）'],
 }
+
+# 第 9 集合「非需求设备目标设备类型配置」出现过的所有名字
+# （接口文档 V2.0 / 0807 报文 / 0812 报文，按出现频次排列）
+_NON_DMD_KEYS = (
+    'nonDmdTargetEquipCodeCfgList',      # 0812 实际名
+    'nonDmdTargetEquipCodeCfgVOList',    # 0807 实际名
+    'nonDmdAimEquipCodeCfgList',         # 接口文档 V2.0 名
+)
 
 
 def _get(data: dict, key: str) -> list:
     return data.get(key) or []
+
+
+def _get_non_demand_target(data: dict) -> list:
+    """取第 9 集合：按实际出现的集合名兜底取数，保证数据不丢。"""
+    if not isinstance(data, dict):
+        return []
+    for key in _NON_DMD_KEYS:
+        val = data.get(key)
+        if isinstance(val, list):
+            return val
+    return []
 
 
 def _frame(key: str, rows: list) -> pd.DataFrame:
@@ -233,7 +268,7 @@ def _build_arrival(data) -> pd.DataFrame:
     for r in _get(data, 'arriveBatchList'):
         rows.append({
             '到货批次号': r.get('arriveBatchNo'),
-            '设备分类': r.get('equipCls'),
+            '设备分类': _equip_cls_name(r.get('equipCls')),
             '设备规格': r.get('equipCode'),
             '数量': r.get('arriveQty'),
             '预计到货日期': _parse_dt(r.get('arriveDate')),
@@ -249,9 +284,11 @@ def _build_demand(data) -> pd.DataFrame:
         month = year + month2.zfill(2) if year else month2
         rows.append({
             '所属月份': month,
-            # 需求用"设备类型码大码"聚合；缺省时回退到设备类型码
+            # 需求按"设备类型码大码"聚合；缺省时回退到设备类型码（0812 pEquipCode==equipCode）
             '设备类型码大码': r.get('pEquipCode') or r.get('equipCode'),
             '申请数量': r.get('sumQty'),
+            '设备码': r.get('equipCode'),
+            '设备分类': _equip_cls_name(r.get('equipCls')),
         })
     return _frame('demand', rows)
 
@@ -259,14 +296,15 @@ def _build_demand(data) -> pd.DataFrame:
 def _build_spec(data) -> pd.DataFrame:
     """规格设备码信息表：由 detectSchList + 需求/到货 跨集合聚合合成。
 
-    - 设备码/自动检定时间   <- detectSchList (equipCode / schTime)
-    - 设备分类             <- 优先按 detectEquipType 推断（接口枚举有文档、可靠，
-                               能推出算法认可的中文分类名）；equipCls 在接口入参中
-                               是编码（"01"/"06"…，接口文档未定义其枚举），无法直接
-                               匹配算法分类名，仅在 equipCls 已是中文分类名时兜底
-    - 接入方式             <- 由 detectEquipType 编码推断（接口无此字段）
+    - 设备码 / 自动检定时间  <- detectSchList (equipCode / schTime)
+    - 设备分类              <- 优先按 detectEquipType 推断（枚举有文档、能推出算法
+                               认可的中文分类名）；推断不出时用 equipCls 码→名兜底
+                               （0812 场景 detectEquipType 全空，靠 equipCls 编码转出）
+    - 接入方式              <- 由 detectEquipType 编码推断（接口无此字段）
+    - 设备码描述            <- 需求/到货的 equipDesc（8.11 用它区分低压CT 子类型）
+    - 参数标识              <- detectSchList 的 detectSchemeId（8.17 出参 detectSchemeId 的数据源）
     """
-    cls_map, etype_map = {}, {}
+    cls_map, etype_map, desc_map = {}, {}, {}
     for r in list(_get(data, 'dmdPlanDetList')) + list(_get(data, 'arriveBatchList')):
         code = r.get('equipCode')
         if code is None or pd.isna(code):
@@ -276,8 +314,11 @@ def _build_spec(data) -> pd.DataFrame:
             cls_map[code] = str(r['equipCls']).strip()
         if r.get('detectEquipType') is not None:
             etype_map[code] = str(r['detectEquipType']).strip()
+        if r.get('equipDesc') is not None and pd.notna(r.get('equipDesc')):
+            desc_map[code] = str(r['equipDesc']).strip()
 
     sch_time = {}
+    sch_scheme = {}
     for r in _get(data, 'detectSchList'):
         code = r.get('equipCode')
         if code is None or pd.isna(code):
@@ -285,21 +326,36 @@ def _build_spec(data) -> pd.DataFrame:
         code = str(code).strip()
         if r.get('schTime') is not None and pd.notna(r.get('schTime')):
             sch_time[code] = int(r['schTime'])
+        if r.get('detectSchemeId') is not None and pd.notna(r.get('detectSchemeId')):
+            sch_scheme[code] = int(r['detectSchemeId'])
 
     rows = []
-    for code in sorted(set(cls_map) | set(etype_map) | set(sch_time)):
-        # 设备分类：优先按 detectEquipType 推断（枚举有文档，推出中文分类名，
-        # 与算法 chambers 的容量 key 匹配）；equipCls 在接口入参中多为编码，
-        # 仅当其已是中文分类名时兜底采用（兼容测试/兑底数据）。
-        cat = _infer_category(etype_map.get(code))
-        if not cat:
+    for code in sorted(set(cls_map) | set(etype_map) | set(sch_time) | set(sch_scheme)):
+        etype = etype_map.get(code)
+        cat = _infer_category(etype)
+        if cat:
+            logger.debug("设备码 %s：按 detectEquipType=%s 推断设备分类「%s」", code, etype, cat)
+        else:
             raw_cls = cls_map.get(code)
-            cat = raw_cls if raw_cls in _KNOWN_CATEGORIES else None
+            cat = _equip_cls_name(raw_cls)
+            if cat and CAT_NAME_TO_DETECT_CODE.get(cat) is not None:
+                # equipCls 兜底出的名称能被算法分类体系识别（已是中文名，或码→名转换成功）
+                logger.debug("设备码 %s：detectEquipType 无法识别，按 equipCls=%s 兜底分类「%s」",
+                             code, raw_cls, cat)
+            elif cat:
+                logger.warning("设备码 %s 无法推断设备分类：detectEquipType=%s 无法识别，"
+                               "equipCls=%s 兜底为「%s」但不被算法分类体系识别"
+                               "（该设备码将无法排程）", code, etype, raw_cls, cat)
+            else:
+                logger.warning("设备码 %s 无法推断设备分类：缺 detectEquipType 且缺 equipCls"
+                               "（该设备码将无法排程）", code)
         rows.append({
             '设备码': code,
             '设备分类': cat,
-            '接入方式': _infer_access(etype_map.get(code)),
+            '接入方式': _infer_access(etype),
             '自动检定时间': sch_time.get(code),
+            '设备码描述': desc_map.get(code),
+            '参数标识': sch_scheme.get(code),
         })
     return _frame('spec', rows)
 
@@ -322,7 +378,7 @@ def _build_unqualified(data) -> pd.DataFrame:
         rows.append({
             '到货批次号': r.get('arriveBatchNo'),
             '设备类型码': r.get('equipCode'),
-            '设备分类': r.get('equipCls'),
+            '设备分类': _equip_cls_name(r.get('equipCls')),
             '可检库存': r.get('detectUQty'),
         })
     return _frame('unqualified', rows)
@@ -345,12 +401,24 @@ def _build_gap_config(data) -> pd.DataFrame:
         rows.append({
             '线体编号': r.get('sysNo'),
             '调度时间间隔（秒）': r.get('timeInterval'),
+            '允许加班时长（小时）': r.get('overtime'),
         })
     return _frame('gap_config', rows)
 
 
+def _build_non_demand_target(data) -> pd.DataFrame:
+    rows = []
+    for r in _get_non_demand_target(data):
+        rows.append({
+            '设备类型码大码': r.get('equipCode'),
+            '目标设备类型码': r.get('aimEquipCode'),
+            '分配比例（%）': r.get('allocationRatio'),
+        })
+    return _frame('non_demand_target', rows)
+
+
 def read_json(json_data: dict) -> Dict[str, pd.DataFrame]:
-    """解析接口文档 8 个 JSON 入参集合，转换为与 Excel 同列的 11 个 DataFrame。
+    """解析接口文档 9 个 JSON 入参集合，转换为与 Excel 同列的 12 个 DataFrame。
 
     json_data 为空或非 dict 时抛 ValueError（服务层已把空请求体挡在路由外，
     此处兜底防御）。
@@ -360,7 +428,7 @@ def read_json(json_data: dict) -> Dict[str, pd.DataFrame]:
     if not isinstance(json_data, dict):
         raise ValueError(f"入参必须是 JSON 对象，实际类型: {type(json_data).__name__}")
 
-    return {
+    result = {
         'overall': _build_overall(json_data),
         'line_info': _build_line_info(json_data),
         'chamber_type': _build_chamber_type(json_data),
@@ -372,4 +440,8 @@ def read_json(json_data: dict) -> Dict[str, pd.DataFrame]:
         'unqualified': _build_unqualified(json_data),
         'time_config': _build_time_config(json_data),
         'gap_config': _build_gap_config(json_data),
+        'non_demand_target': _build_non_demand_target(json_data),
     }
+    for key, df in result.items():
+        logger.debug("接口集合解析 [%s]：%d 行", key, len(df))
+    return result
