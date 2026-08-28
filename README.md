@@ -1,7 +1,7 @@
 # 检定排程算法服务
 
-电能表检定排程与库存优化算法服务。核心调度算法从 8.25 脚本
-`docs/算法脚本/检定排程/检定排程python代码_8.25.py` **零修改迁移**（原脚本保留作参考，勿改），
+电能表检定排程与库存优化算法服务。核心调度算法从 8.28 脚本
+`docs/算法脚本/检定排程/检定排程python代码_8.28最新.py` **零修改迁移**（原脚本保留作参考，勿改），
 重构为**算法服务 + 模块化代码**：
 
 - **生产环境**：被计量生产调度平台通过 HTTP 调用，JSON 入参（9 集合）→ JSON 出参
@@ -26,7 +26,7 @@
 ├── modules/                    # 算法模块注册中心（每个算法域一个自包含包）
 │   ├── base.py                 # AlgorithmModule 数据类（模块契约）
 │   ├── __init__.py             # all_modules() / get_module() 注册中心
-│   ├── detect/                 # 检定排程模块（8.25 核心，已接入 HTTP）
+│   ├── detect/                 # 检定排程模块（8.28 核心，已接入 HTTP）
 │   │   ├── __init__.py         # MODULE 注册声明（interface_path 非 None）
 │   │   ├── constants.py        # 接口枚举字典 + 8.16 统一码值字典（硬编码）+ SchedulingConfig
 │   │   ├── category.py         # 设备分类解析（中文名/码 双分类器）
@@ -240,7 +240,10 @@ docker run --rm -v "$PWD":/data jiankeng-scheduler python cli.py /data/输入.xl
 
 **真实请求样例**：`docs/报文/0812_单请求.json`（0812 报文第一个请求的合法单 JSON，
 9 集合齐全，可直接作 Postman Body）；`docs/报文/0812_单请求_补抽检字段.json`
-（v0.0.6 形态：全部批次补 sampleFlag/sampleQty，含 2 个到货批次 + 1 个非合格品批次未抽检）。
+（v0.0.6 形态：全部批次补 sampleFlag/sampleQty，含 2 个到货批次 + 1 个非合格品批次未抽检）；
+`docs/报文/0825_检定仓情况_转json.json`（由 `tests/excel_to_json_payload.py` 从
+`docs/样例/检定仓情况-20260825.xlsx` 按 v0.0.6 转换生成——**HTTP 与 CLI 用同一份数据，
+两条路径排程结果一致**）。
 
 ### 5.2 HTTP 出参
 
@@ -275,6 +278,9 @@ docker run --rm -v "$PWD":/data jiankeng-scheduler python cli.py /data/输入.xl
 > 码值：`equipCls`/`equipCateg`/`deviceType` 均为 2 位码（8.16 统一码值体系）。
 > `detectSchemeId` 自 8.17 起生产（来源 spec 参数标识，含大小码回退，查不到返回空串）。
 > `detectType`（检定类别）自 8.25 起生产：未抽检批次先安排 02 抽样试验，之后 03 首次检定。
+> **输出全部码值化（8.28 起，Excel 与 JSON 同步）**：能找到码值映射的中文一律输出编码字符
+> （VW 编码列 2 位字符串、需求优先 '1'/'0'，Excel 中文名称列已删除）；无码值映射的字段
+> （线体名称 sysName、月份、批次号、设备码等标识）保持原样。
 > `equipDesc` / `weekDayStartAndEnd` 算法暂不生产，返回空串，待企业确认口径。
 
 ### 5.3 Excel 入参（离线兑底，12 个 sheet）

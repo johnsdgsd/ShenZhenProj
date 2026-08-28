@@ -209,7 +209,8 @@ def test_detect_scheme_id_big_code_fallback():
 
 
 def test_sampling_flow():
-    """8.25 抽检流程：未抽检批次先抽检（detectType=02）再做首检（03），首检不早于抽检完成。"""
+    """8.28 抽检流程：未抽检批次先抽检（detectType=02）再做首检（03），首检不早于抽检完成；
+    抽检数量从批次数量中扣除（10 台 = 抽检 3 + 首检 7）。"""
     payload = {
         "deviceParaList": [
             {"sysNo": "2001", "sysName": "单相线", "deviceType": "01",
@@ -244,11 +245,15 @@ def test_sampling_flow():
                          key=lambda r: r['projectedEndTime'])
     first_rows = [r for r in rows if r['detectType'] == '03']
     assert sum(r['detectPlanQty'] for r in sample_rows) == 3, "抽检数量应为 3 台"
+    assert sum(r['detectPlanQty'] for r in first_rows) == 7, \
+        "8.28：抽检数量从批次数量中扣除，首检应为 10-3=7 台"
     sample_end = sample_rows[-1]['projectedEndTime']
     for r in first_rows:
         assert r['projectedStartTime'] >= sample_end, \
             f"首检 {r['projectedStartTime']} 不应早于抽检完成 {sample_end}"
-    print(f"[抽检流程] 未抽检批次先抽检 3 台（02）后首检 10 台（03），首检不早于抽检完成 - OK")
+    # 12.7 校正：本用例无需求，全部标记为非需求优先（'0'）
+    assert all(r['demandFlag'] == '0' for r in rows), "无需求场景应全部为非需求优先"
+    print(f"[抽检流程] 未抽检批次抽检 3 台（02）+ 首检 7 台（03），首检不早于抽检完成 - OK")
 
 
 def test_sampling_default_sampled():

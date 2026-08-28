@@ -1,6 +1,6 @@
 """
-检定模块 — 设备分类解析（8.16 版）
-============================
+检定模块 — 设备分类解析（8.16 版分类器 + 8.28 码→码推导）
+========================================================
 8.16 脚本 `检定排程python代码_8.16（修改映射）.py` 引入统一码值体系：
 `parse_device_category` 由返回中文名改为返回 **VW_DETECT_EQUIP_TYPE 编码**（int），
 spec / chambers / demand 三处分类身份统一以码为键。
@@ -11,9 +11,14 @@ spec / chambers / demand 三处分类身份统一以码为键。
 - 低压电流互感器按描述区分 3 种子类型：大变比(9) / DBI(10) / 普通型(8)
 - 全部终端类（集中器/负荷控制/负荷管理/配变监测/智能量测/厂站）→ 14
 
+8.28 起数据层解耦：get_equip_cls_code / get_equip_categ_code 优先按
+VW_DETECT_EQUIP_TYPE 码直查（constants.DEV_CAT_TO_* 码→码映射），中文名兜底——
+核心算法不再走中文名中转。
+
 已记录、待算法负责人确认（勿改）：VW_DETECT_EQUIP_TYPE 编码 12/13/16/17 转出的名称
 （负荷**管理**终端 / 配变监测**计量**终端）在此分类器**认不出**（只认 负荷控制终端 /
 配变监测终端），对应仓会被静默跳过——见 docs/导出数据/检定数据记录文档.md §2-C。
+（JSON 测试报文由 tests/excel_to_json_payload.py 就近映射 14/15 码保证两路径一致）
 """
 from __future__ import annotations
 
@@ -21,6 +26,8 @@ from .constants import (
     CAT_NAME_TO_DETECT_CODE,
     CAT_NAME_TO_EQUIP_CLS_CODE,
     DETECT_CODE_TO_NAME,
+    DEV_CAT_TO_EQUIP_CATEG_CODE,
+    DEV_CAT_TO_EQUIP_CLS_CODE,
     EQUIP_CLS_CODE_TO_NAME,
 )
 
@@ -99,9 +106,16 @@ def get_detect_equip_type_name(code):
     return DETECT_CODE_TO_NAME.get(code, str(code))
 
 
-def get_equip_cls_code(cat_name):
-    """设备分类名称 -> VW_EQUIP_CLS 编码。"""
-    return CAT_NAME_TO_EQUIP_CLS_CODE.get(cat_name, None)
+def get_equip_cls_code(cat):
+    """设备分类 -> VW_EQUIP_CLS 编码。
+
+    8.28 起核心按编码推导：优先接受 VW_DETECT_EQUIP_TYPE 码直查（码→码），
+    中文名兜底（名称→码，兼容分类未识别时存中文名的场景）。
+    """
+    code = DEV_CAT_TO_EQUIP_CLS_CODE.get(cat)
+    if code is not None:
+        return code
+    return CAT_NAME_TO_EQUIP_CLS_CODE.get(cat, None)
 
 
 def get_equip_cls_name(code):
@@ -109,11 +123,16 @@ def get_equip_cls_name(code):
     return EQUIP_CLS_CODE_TO_NAME.get(code, str(code))
 
 
-def get_equip_categ_code(cat_name):
-    """设备分类名称 -> VW_EQUIP_CATEG 设备类别编码（8.16 L77-85 原文）。
+def get_equip_categ_code(cat):
+    """设备分类 -> VW_EQUIP_CATEG 设备类别编码（8.16 L77-85 语义）。
 
-    电能表（含直接表/互感表）→ 1；互感器 → 2；计量自动化终端 → 9；否则 None。
+    8.28 起核心按编码推导：优先接受 VW_DETECT_EQUIP_TYPE 码直查（码→码：
+    电能表→1、互感器→2、计量自动化终端→9）；中文名兜底（名称关键词）。
     """
+    code = DEV_CAT_TO_EQUIP_CATEG_CODE.get(cat)
+    if code is not None:
+        return code
+    cat_name = str(cat)
     if any(k in cat_name for k in ['电能表', '直接表', '互感表']):
         return 1  # 电能表
     if any(k in cat_name for k in ['电压互感器', '电流互感器', '低压电流互感器']):

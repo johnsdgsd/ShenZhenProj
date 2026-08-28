@@ -3,15 +3,17 @@
 ========================
 process_data()：把 reader 读出的 12 个 {key: DataFrame} 填充到 scheduler 模块级全局变量。
 
-逻辑与 8.25 脚本 `检定排程python代码_8.25.py` 相应段落逐行一致，
-零修改迁移（仅补充日志 + 硬编码参数改从 SchedulingConfig 取值，默认值与 8.25 相同）。
+逻辑与 8.28 脚本 `检定排程python代码_8.28最新.py` 相应段落逐行一致，
+零修改迁移（仅补充日志 + 硬编码参数改从 SchedulingConfig 取值，默认值与 8.28 相同）。
 
 8.16 起分类统一以 VW_DETECT_EQUIP_TYPE 码为键：spec.设备分类（中文名）经
 CAT_NAME_TO_DETECT_CODE 转码存入 dev_code_to_cat，并新增 dev_code_to_cat_name 存中文名。
 8.17 起新增 dev_code_to_detect_scheme_id：读取 spec.参数标识 作为 detectSchemeId
 （row.get 兜底旧 Excel 无「参数标识」列的场景，行为等价）。
-8.25 起新增 batch_sample_info：解析到货/非合格品批次的 是否已抽检/抽检数量
-（row.get 兜底旧 Excel 无此列的场景——视为已抽检、抽检数量 0，行为等价）。
+8.25 起新增 batch_sample_info：解析到货/非合格品批次的 是否已抽检/抽检数量。
+8.28 调整：是否已抽检 只认 '是'（接口 sampleFlag 1/0 已在 reader 归一化为 是/否）；
+未抽检批次的抽检数量从批次数量中扣除（只抽检、不再首检）；新增 initial_inventory
+期初库存快照（供 12.7 需求优先事后校正）。row.get 兜底旧 Excel 无此列的场景。
 
 日志约定：
 - INFO    : 各准备步骤规模（输入/映射/仓/时间配置/库存/批次/需求）
@@ -27,32 +29,29 @@ import pandas as pd
 from common.utils import clean_columns
 from . import scheduler
 from .category import classify_low_voltage_subtype, get_detect_equip_type_name, parse_device_category
-from .constants import CAT_NAME_TO_DETECT_CODE
+from .constants import ACCESS_DIRECT, ACCESS_HUGAN, ACCESS_UNKNOWN, CAT_NAME_TO_DETECT_CODE
 
 logger = logging.getLogger(__name__)
 
 
-def _parse_sampled(val):
-    """把"是否已抽检"转为布尔值：是→已抽检(True)，否/0→未抽检(False)，空值默认视为已抽检（8.25 原文）。"""
-    if pd.isna(val):
-        return True
+def _normalize_access(val):
+    """接入方式归一化为码：'1'/含"经互感" → ACCESS_HUGAN；'0'/含"直接" → ACCESS_DIRECT；其余 UNKNOWN。
+
+    Excel 接入方式列是中文（经互感接入/直接接入），JSON 路径 reader 已推断出码；
+    此处统一两条路径的接入方式为同一套码，核心算法只按码判断（8.28 解耦）。
+    """
+    if val is None or pd.isna(val):
+        return ACCESS_UNKNOWN
     s = str(val).strip()
-    if s in ('否', '0', '0.0', 'False', 'false', ''):
-        return False
-    return True
-
-
-def _safe_int(val, default=0):
-    if pd.isna(val):
-        return default
-    try:
-        return int(val)
-    except (ValueError, TypeError):
-        return default
+    if s in (ACCESS_HUGAN, '1', '1.0') or '经互感' in s:
+        return ACCESS_HUGAN
+    if s in (ACCESS_DIRECT, '0', '0.0') or '直接' in s:
+        return ACCESS_DIRECT
+    return ACCESS_UNKNOWN
 
 
 def process_data(dfs, sched_cfg):
-    """填充 scheduler 模块级全局变量（21 个输入）。
+    """填充 scheduler 模块级全局变量（22 个输入）。
 
     逻辑与 8.16 脚本相应段落逐行一致。
     dfs 来自 reader（Excel 或 JSON），列名与算法期望一致。
@@ -136,7 +135,7 @@ def process_data(dfs, sched_cfg):
     for _, row in df_spec.iterrows():
         code = row['设备码']
         cat = row['设备分类']
-        access = row['接入方式'] if pd.notna(row['接入方式']) else ''
+        access = _normalize_access(row.get('接入方式'))
         # 低压电流互感器使用子类型分类
         if cat == '低压电流互感器':
             cat = dev_code_to_low_voltage_subtype.get(str(code), cat)
@@ -302,26 +301,31 @@ def process_data(dfs, sched_cfg):
         available = qualified - undelivered - safety
         if available > 0:
             inventory[dev_code] += int(available)
+    initial_inventory = dict(inventory)  # 期初合格品库存快照，用于排程完成后校正"是否为需求优先"标记
     logger.info("初始库存（按设备码）: %s", dict(inventory))
 
     # ---- 待处理批次（非合格品库存 + 到货计划）----
     pending_batches = deque()
     n_unqualified = 0
-    # 【甲方20260825新需求】解析"是否已抽检"标志与"抽检数量"
-    #   是否已抽检=否 的批次，需先按抽检数量做抽检（到货后抽样检测），抽检完成后才能做首检
+    # 【甲方20260825新需求/8.28 调整】解析"是否已抽检"标志与"抽检数量"
+    #   是否已抽检=否 的批次，按抽检数量先抽检（到货后抽样检测），该部分只做抽检、
+    #   不再安排首检（8.28 起抽检数量从批次数量中扣除）
     # 注：row.get 兜底旧 Excel 无「是否已抽检/抽检数量」列的场景（视为已抽检、抽检数量 0）
-    batch_sample_info = {}  # batch_no -> {'sampled': bool(True表示已抽检), 'sample_qty': int}
+    batch_sample_info = {}  # 到货批次号 → {'sampled': 是否已抽检, 'sample_qty': 抽检数量}
 
     for _, row in df_unqualified.iterrows():
         batch_no = row['到货批次号']
         dev_code = row['设备类型码']
         qty = int(row['可检库存'])
         est_date = datetime(2026, 1, 1, 0, 0, 0)
-        pending_batches.append([str(batch_no), dev_code, qty, qty, est_date])
-        batch_sample_info[str(batch_no)] = {
-            'sampled': _parse_sampled(row.get('是否已抽检')),
-            'sample_qty': _safe_int(row.get('抽检数量'), 0),
-        }
+        sampled = str(row.get('是否已抽检')).strip() == '是' if pd.notna(row.get('是否已抽检')) else True
+        sample_qty = int(row.get('抽检数量')) if pd.notna(row.get('抽检数量')) else 0
+        if not sampled and sample_qty > 0:
+            sample_qty = min(sample_qty, qty)
+        batch_sample_info[str(batch_no)] = {'sampled': sampled, 'sample_qty': sample_qty}
+        # 未抽检批次的抽检数量从批次数量中扣除，该部分只做抽检、不再安排首检
+        first_check_qty = qty if (sampled or sample_qty <= 0) else qty - sample_qty
+        pending_batches.append([str(batch_no), dev_code, first_check_qty, qty, est_date])
         n_unqualified += 1
 
     for _, row in df_arrival.iterrows():
@@ -333,11 +337,14 @@ def process_data(dfs, sched_cfg):
         est_date = row['预计到货日期']
         if pd.isna(est_date):
             est_date = datetime(2026, 3, 31)
-        pending_batches.append([str(batch_no), dev_code, qty, qty, est_date])
-        batch_sample_info[str(batch_no)] = {
-            'sampled': _parse_sampled(row.get('是否已抽检')),
-            'sample_qty': _safe_int(row.get('抽检数量'), 0),
-        }
+        sampled = str(row.get('是否已抽检')).strip() == '是' if pd.notna(row.get('是否已抽检')) else True
+        sample_qty = int(row.get('抽检数量')) if pd.notna(row.get('抽检数量')) else 0
+        if not sampled and sample_qty > 0:
+            sample_qty = min(sample_qty, qty)
+        batch_sample_info[str(batch_no)] = {'sampled': sampled, 'sample_qty': sample_qty}
+        # 未抽检批次的抽检数量从批次数量中扣除，该部分只做抽检、不再安排首检
+        first_check_qty = qty if (sampled or sample_qty <= 0) else qty - sample_qty
+        pending_batches.append([str(batch_no), dev_code, first_check_qty, qty, est_date])
 
     pending_batches = deque(sorted(pending_batches, key=lambda x: (x[4], x[0])))
     logger.info("待处理批次总数: %d（非合格品库存 %d 批 + 到货计划 %d 批）",
@@ -400,6 +407,7 @@ def process_data(dfs, sched_cfg):
     scheduler.overtime_map = overtime_map
     scheduler.base_date = base_date
     scheduler.inventory = inventory
+    scheduler.initial_inventory = initial_inventory
     scheduler.pending_batches = pending_batches
     scheduler.batch_sample_info = batch_sample_info
     scheduler.demand_by_month = demand_by_month

@@ -1,0 +1,2959 @@
+{
+  "deviceParaList": [
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "02",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "03",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "11",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "02",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "03",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "11",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "05",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "02",
+      "deviceNo": "DGNx003",
+      "deviceName": "DGNx003",
+      "detectEquipType": "02",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "02",
+      "deviceNo": "DGNx003",
+      "deviceName": "DGNx003",
+      "detectEquipType": "03",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "02",
+      "deviceNo": "DGNx004",
+      "deviceName": "DGNx004",
+      "detectEquipType": "02",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "02",
+      "deviceNo": "DGNx004",
+      "deviceName": "DGNx004",
+      "detectEquipType": "03",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "18",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "11",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "18",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "11",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "18",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "11",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "15",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "18",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "11",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "03",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "14",
+      "posNum": 48
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx009",
+      "deviceName": "DGNx009",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx010",
+      "deviceName": "DGNx010",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx011",
+      "deviceName": "DGNx011",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx012",
+      "deviceName": "DGNx012",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx013",
+      "deviceName": "DGNx013",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx014",
+      "deviceName": "DGNx014",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx015",
+      "deviceName": "DGNx015",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx016",
+      "deviceName": "DGNx016",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2001",
+      "sysName": "电表兼容终端线",
+      "deviceType": "01",
+      "deviceNo": "DGNx017",
+      "deviceName": "DGNx017",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx003",
+      "deviceName": "DGNx003",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx003",
+      "deviceName": "DGNx003",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx003",
+      "deviceName": "DGNx003",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx004",
+      "deviceName": "DGNx004",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx004",
+      "deviceName": "DGNx004",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx004",
+      "deviceName": "DGNx004",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx005",
+      "deviceName": "DGNx005",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx006",
+      "deviceName": "DGNx006",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx007",
+      "deviceName": "DGNx007",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx008",
+      "deviceName": "DGNx008",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx009",
+      "deviceName": "DGNx009",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx009",
+      "deviceName": "DGNx009",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx009",
+      "deviceName": "DGNx009",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx010",
+      "deviceName": "DGNx010",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx010",
+      "deviceName": "DGNx010",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx010",
+      "deviceName": "DGNx010",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx011",
+      "deviceName": "DGNx011",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx011",
+      "deviceName": "DGNx011",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx011",
+      "deviceName": "DGNx011",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx012",
+      "deviceName": "DGNx012",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx012",
+      "deviceName": "DGNx012",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx012",
+      "deviceName": "DGNx012",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx013",
+      "deviceName": "DGNx013",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx013",
+      "deviceName": "DGNx013",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx013",
+      "deviceName": "DGNx013",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx014",
+      "deviceName": "DGNx014",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx014",
+      "deviceName": "DGNx014",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx014",
+      "deviceName": "DGNx014",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx015",
+      "deviceName": "DGNx015",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx015",
+      "deviceName": "DGNx015",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx015",
+      "deviceName": "DGNx015",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx016",
+      "deviceName": "DGNx016",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx016",
+      "deviceName": "DGNx016",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx016",
+      "deviceName": "DGNx016",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx017",
+      "deviceName": "DGNx017",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx017",
+      "deviceName": "DGNx017",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx017",
+      "deviceName": "DGNx017",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx018",
+      "deviceName": "DGNx018",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx018",
+      "deviceName": "DGNx018",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx018",
+      "deviceName": "DGNx018",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx019",
+      "deviceName": "DGNx019",
+      "detectEquipType": "01",
+      "posNum": 72
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx019",
+      "deviceName": "DGNx019",
+      "detectEquipType": "02",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "单三相兼容线",
+      "deviceType": "04",
+      "deviceNo": "DGNx019",
+      "deviceName": "DGNx019",
+      "detectEquipType": "03",
+      "posNum": 24
+    },
+    {
+      "sysNo": "2201",
+      "sysName": "高压互感器检定线",
+      "deviceType": "06",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "04",
+      "posNum": 3
+    },
+    {
+      "sysNo": "2201",
+      "sysName": "高压互感器检定线",
+      "deviceType": "06",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "05",
+      "posNum": 1
+    },
+    {
+      "sysNo": "2201",
+      "sysName": "高压互感器检定线",
+      "deviceType": "07",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "06",
+      "posNum": 3
+    },
+    {
+      "sysNo": "2201",
+      "sysName": "高压互感器检定线",
+      "deviceType": "07",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "07",
+      "posNum": 1
+    },
+    {
+      "sysNo": "2301",
+      "sysName": "低压互感器检定线",
+      "deviceType": "08",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "08",
+      "posNum": 12
+    },
+    {
+      "sysNo": "2301",
+      "sysName": "低压互感器检定线",
+      "deviceType": "08",
+      "deviceNo": "DGNx001",
+      "deviceName": "DGNx001",
+      "detectEquipType": "09",
+      "posNum": 6
+    },
+    {
+      "sysNo": "2301",
+      "sysName": "低压互感器检定线",
+      "deviceType": "09",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "08",
+      "posNum": 12
+    },
+    {
+      "sysNo": "2301",
+      "sysName": "低压互感器检定线",
+      "deviceType": "09",
+      "deviceNo": "DGNx002",
+      "deviceName": "DGNx002",
+      "detectEquipType": "10",
+      "posNum": 12
+    }
+  ],
+  "scheduleConfigList": [
+    {
+      "sysNo": "2001",
+      "sysName": "电能表兼容终端自动化检定流水线",
+      "timeInterval": 300,
+      "overtime": 6
+    },
+    {
+      "sysNo": "2101",
+      "sysName": "电能表自动化检定流水线",
+      "timeInterval": 300,
+      "overtime": 1
+    },
+    {
+      "sysNo": "2201",
+      "sysName": "高压互感器自动化检定流水线",
+      "timeInterval": 300,
+      "overtime": 1
+    },
+    {
+      "sysNo": "2301",
+      "sysName": "低压电流互感器自动化检定流水线",
+      "timeInterval": 300,
+      "overtime": 1
+    }
+  ],
+  "arriveBatchList": [
+    {
+      "arriveBatchNo": "2012602261000021",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "arriveQty": 1750,
+      "arriveDate": "2026-03-01 00:00:00",
+      "detectEquipType": "14",
+      "sampleFlag": "1",
+      "sampleQty": 125
+    },
+    {
+      "arriveBatchNo": "2012602261000024",
+      "equipCateg": "02",
+      "equipCls": "07",
+      "equipCode": "072025121112230010000001",
+      "equipDesc": "深圳_10KV电压互感器",
+      "arriveQty": 1150,
+      "arriveDate": "2026-02-28 00:00:00",
+      "detectEquipType": "04",
+      "sampleFlag": "0",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012602261000032",
+      "equipCateg": "02",
+      "equipCls": "06",
+      "equipCode": "0625121820350001202508180001",
+      "equipDesc": "深圳_10kV电流互感器",
+      "arriveQty": 2950,
+      "arriveDate": "2026-02-28 00:00:00",
+      "detectEquipType": "06",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012602261000048",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "arriveQty": 2800,
+      "arriveDate": "2026-02-28 00:00:00",
+      "detectEquipType": "08",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012602261000061",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "arriveQty": 5100,
+      "arriveDate": "2026-02-28 00:00:00",
+      "detectEquipType": "02",
+      "sampleFlag": "1",
+      "sampleQty": 200
+    },
+    {
+      "arriveBatchNo": "2012602261000089",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001",
+      "equipDesc": "单相智能电能表_0120",
+      "arriveQty": 21000,
+      "arriveDate": "2026-02-28 00:00:00",
+      "detectEquipType": "01",
+      "sampleFlag": "1",
+      "sampleQty": 315
+    },
+    {
+      "arriveBatchNo": "2012602261000090",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001",
+      "equipDesc": "单相智能电能表_0120",
+      "arriveQty": 10400,
+      "arriveDate": "2026-03-05 00:00:00",
+      "detectEquipType": "01",
+      "sampleFlag": "0",
+      "sampleQty": 315
+    },
+    {
+      "arriveBatchNo": "2012602261000091",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "02260203094600010001",
+      "equipDesc": "三相互感电能表_0203",
+      "arriveQty": 4700,
+      "arriveDate": "2026-03-09 00:00:00",
+      "detectEquipType": "02",
+      "sampleFlag": "1",
+      "sampleQty": 200
+    },
+    {
+      "arriveBatchNo": "2012603261000091",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001",
+      "equipDesc": "单相智能电能表_0120",
+      "arriveQty": 52000,
+      "arriveDate": "2026-03-25 00:00:00",
+      "detectEquipType": "01",
+      "sampleFlag": "0",
+      "sampleQty": 501
+    },
+    {
+      "arriveBatchNo": "2012603261000033",
+      "equipCateg": "02",
+      "equipCls": "06",
+      "equipCode": "0625121820350001202508180001",
+      "equipDesc": "深圳_10kV电流互感器",
+      "arriveQty": 1500,
+      "arriveDate": "2026-03-22 00:00:00",
+      "detectEquipType": "06",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012603261000025",
+      "equipCateg": "02",
+      "equipCls": "07",
+      "equipCode": "072025121112230010000001",
+      "equipDesc": "深圳_10KV电压互感器",
+      "arriveQty": 800,
+      "arriveDate": "2026-03-26 00:00:00",
+      "detectEquipType": "04",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012603261000049",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "arriveQty": 3000,
+      "arriveDate": "2026-03-21 00:00:00",
+      "detectEquipType": "08",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012603261000062",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "arriveQty": 1500,
+      "arriveDate": "2026-03-16 00:00:00",
+      "detectEquipType": "02",
+      "sampleFlag": "0",
+      "sampleQty": 126
+    },
+    {
+      "arriveBatchNo": "2012603261000022",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "arriveQty": 2500,
+      "arriveDate": "2026-03-29 00:00:00",
+      "detectEquipType": "14",
+      "sampleFlag": "1",
+      "sampleQty": 125
+    },
+    {
+      "arriveBatchNo": "2012603261000023",
+      "equipCateg": "02",
+      "equipCls": "21",
+      "equipCode": "202025121112230020900",
+      "equipDesc": "20kV电压互感器",
+      "arriveQty": 50,
+      "arriveDate": "2026-03-05 00:00:00",
+      "detectEquipType": "05",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012603261000024",
+      "equipCateg": "02",
+      "equipCls": "20",
+      "equipCode": "212025121112230030900",
+      "equipDesc": "20kV电流互感器",
+      "arriveQty": 45,
+      "arriveDate": "2026-03-05 00:00:00",
+      "detectEquipType": "07",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012603261000025",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "02251217101700140900",
+      "equipDesc": "大变比低压电流互感器",
+      "arriveQty": 60,
+      "arriveDate": "2026-03-05 00:00:00",
+      "detectEquipType": "08",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012603261000026",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "02251217101700150900",
+      "equipDesc": "DBI低压电流互感器",
+      "arriveQty": 70,
+      "arriveDate": "2026-03-05 00:00:00",
+      "detectEquipType": "08",
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "arriveBatchNo": "2012603261000027",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "0825101012263460900",
+      "equipDesc": "智能融合终端",
+      "arriveQty": 100,
+      "arriveDate": "2026-03-05 00:00:00",
+      "detectEquipType": "",
+      "sampleFlag": "1",
+      "sampleQty": 3
+    }
+  ],
+  "dmdPlanDetList": [
+    {
+      "dmdPlanDetId": 1,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1788
+    },
+    {
+      "dmdPlanDetId": 2,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100010900",
+      "equipDesc": "单相智能电能表_小1",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1000
+    },
+    {
+      "dmdPlanDetId": 3,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2780
+    },
+    {
+      "dmdPlanDetId": 4,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2102
+    },
+    {
+      "dmdPlanDetId": 5,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2120
+    },
+    {
+      "dmdPlanDetId": 6,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2250
+    },
+    {
+      "dmdPlanDetId": 7,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2380
+    },
+    {
+      "dmdPlanDetId": 8,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2320
+    },
+    {
+      "dmdPlanDetId": 9,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2880
+    },
+    {
+      "dmdPlanDetId": 10,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2590
+    },
+    {
+      "dmdPlanDetId": 11,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3140
+    },
+    {
+      "dmdPlanDetId": 12,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2190
+    },
+    {
+      "dmdPlanDetId": 13,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3420
+    },
+    {
+      "dmdPlanDetId": 14,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 4330
+    },
+    {
+      "dmdPlanDetId": 15,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2890
+    },
+    {
+      "dmdPlanDetId": 16,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3650
+    },
+    {
+      "dmdPlanDetId": 17,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3170
+    },
+    {
+      "dmdPlanDetId": 18,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3240
+    },
+    {
+      "dmdPlanDetId": 19,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2760
+    },
+    {
+      "dmdPlanDetId": 20,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "06",
+      "equipCode": "0226041610510001",
+      "equipDesc": "深圳_10kv电流互感器_0416_40只",
+      "pEquipCode": "0226041610510001",
+      "sumQty": 1500
+    },
+    {
+      "dmdPlanDetId": 21,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "07",
+      "equipCode": "062604230950001",
+      "equipDesc": "深圳_10kv电压互感器_0423_2只_50Hz",
+      "pEquipCode": "062604230950001",
+      "sumQty": 800
+    },
+    {
+      "dmdPlanDetId": 22,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 1500
+    },
+    {
+      "dmdPlanDetId": 23,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 1440
+    },
+    {
+      "dmdPlanDetId": 24,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 1560
+    },
+    {
+      "dmdPlanDetId": 25,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 1600
+    },
+    {
+      "dmdPlanDetId": 26,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 900
+    },
+    {
+      "dmdPlanDetId": 27,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 240
+    },
+    {
+      "dmdPlanDetId": 28,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "02260203094600010001",
+      "equipDesc": "三相互感电能表_0203",
+      "pEquipCode": "02260203094600010001",
+      "sumQty": 6600
+    },
+    {
+      "dmdPlanDetId": 29,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "07",
+      "equipCode": "072025121112230010000001",
+      "equipDesc": "深圳_10KV电压互感器",
+      "pEquipCode": "072025121112230010000001",
+      "sumQty": 500
+    },
+    {
+      "dmdPlanDetId": 30,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1966
+    },
+    {
+      "dmdPlanDetId": 31,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1440
+    },
+    {
+      "dmdPlanDetId": 32,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "07",
+      "equipCode": "072025121112230010000001",
+      "equipDesc": "深圳_10KV电压互感器",
+      "pEquipCode": "072025121112230010000001",
+      "sumQty": 1000
+    },
+    {
+      "dmdPlanDetId": 33,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "06",
+      "equipCode": "0625121820350001202508180001",
+      "equipDesc": "深圳_10kv电流互感器",
+      "pEquipCode": "0625121820350001202508180001",
+      "sumQty": 2000
+    },
+    {
+      "dmdPlanDetId": 34,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "06",
+      "equipCode": "0625121820350001202508180001",
+      "equipDesc": "深圳_10kv电流互感器",
+      "pEquipCode": "0625121820350001202508180001",
+      "sumQty": 1500
+    },
+    {
+      "dmdPlanDetId": 35,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 2500
+    },
+    {
+      "dmdPlanDetId": 36,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 1450
+    },
+    {
+      "dmdPlanDetId": 37,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 1300
+    },
+    {
+      "dmdPlanDetId": 38,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 750
+    },
+    {
+      "dmdPlanDetId": 39,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1630
+    },
+    {
+      "dmdPlanDetId": 40,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1694
+    },
+    {
+      "dmdPlanDetId": 41,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1800
+    },
+    {
+      "dmdPlanDetId": 42,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1750
+    },
+    {
+      "dmdPlanDetId": 43,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1550
+    },
+    {
+      "dmdPlanDetId": 44,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1780
+    },
+    {
+      "dmdPlanDetId": 45,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1670
+    },
+    {
+      "dmdPlanDetId": 46,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1525
+    },
+    {
+      "dmdPlanDetId": 47,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1725
+    },
+    {
+      "dmdPlanDetId": 48,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1880
+    },
+    {
+      "dmdPlanDetId": 49,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1560
+    },
+    {
+      "dmdPlanDetId": 50,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1420
+    },
+    {
+      "dmdPlanDetId": 51,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1700
+    },
+    {
+      "dmdPlanDetId": 52,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1600
+    },
+    {
+      "dmdPlanDetId": 53,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1500
+    },
+    {
+      "dmdPlanDetId": 54,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1810
+    },
+    {
+      "dmdPlanDetId": 55,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 270
+    },
+    {
+      "dmdPlanDetId": 56,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 350
+    },
+    {
+      "dmdPlanDetId": 57,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 380
+    },
+    {
+      "dmdPlanDetId": 58,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 420
+    },
+    {
+      "dmdPlanDetId": 59,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 275
+    },
+    {
+      "dmdPlanDetId": 60,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 325
+    },
+    {
+      "dmdPlanDetId": 61,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 370
+    },
+    {
+      "dmdPlanDetId": 62,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 220
+    },
+    {
+      "dmdPlanDetId": 63,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 330
+    },
+    {
+      "dmdPlanDetId": 64,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 267
+    },
+    {
+      "dmdPlanDetId": 65,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 253
+    },
+    {
+      "dmdPlanDetId": 66,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 372
+    },
+    {
+      "dmdPlanDetId": 67,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 458
+    },
+    {
+      "dmdPlanDetId": 68,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 432
+    },
+    {
+      "dmdPlanDetId": 69,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 238
+    },
+    {
+      "dmdPlanDetId": 70,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "01",
+      "equipCls": "02",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 260
+    },
+    {
+      "dmdPlanDetId": 71,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "21",
+      "equipCode": "202025121112230020900",
+      "equipDesc": "20kV电压互感器",
+      "pEquipCode": "202025121112230020900",
+      "sumQty": 50
+    },
+    {
+      "dmdPlanDetId": 72,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "20",
+      "equipCode": "212025121112230030900",
+      "equipDesc": "20kV电流互感器",
+      "pEquipCode": "212025121112230030900",
+      "sumQty": 45
+    },
+    {
+      "dmdPlanDetId": 73,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "02251217101700140900",
+      "equipDesc": "大变比低压电流互感器",
+      "pEquipCode": "02251217101700140900",
+      "sumQty": 60
+    },
+    {
+      "dmdPlanDetId": 74,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "",
+      "equipCateg": "02",
+      "equipCls": "08",
+      "equipCode": "02251217101700150900",
+      "equipDesc": "DBI低压电流互感器",
+      "pEquipCode": "02251217101700150900",
+      "sumQty": 70
+    },
+    {
+      "dmdPlanDetId": 75,
+      "dmdPlanNo": "",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "",
+      "equipCateg": "09",
+      "equipCls": "19",
+      "equipCode": "0825101012263460900",
+      "equipDesc": "智能融合终端",
+      "pEquipCode": "0825101012263460900",
+      "sumQty": 100
+    }
+  ],
+  "detectSchList": [
+    {
+      "equipCode": "082512251013544",
+      "detectType": "03",
+      "detectSchemeId": 21,
+      "schTime": 414
+    },
+    {
+      "equipCode": "072025121112230010000001",
+      "detectType": "03",
+      "detectSchemeId": 24,
+      "schTime": 25
+    },
+    {
+      "equipCode": "0625121820350001202508180001",
+      "detectType": "03",
+      "detectSchemeId": 32,
+      "schTime": 25
+    },
+    {
+      "equipCode": "07251217161200010002329312",
+      "detectType": "03",
+      "detectSchemeId": 48,
+      "schTime": 25
+    },
+    {
+      "equipCode": "0225122202120001",
+      "detectType": "03",
+      "detectSchemeId": 61,
+      "schTime": 414
+    },
+    {
+      "equipCode": "0126012000010001",
+      "detectType": "03",
+      "detectSchemeId": 89,
+      "schTime": 108
+    },
+    {
+      "equipCode": "02260203094600010001",
+      "detectType": "03",
+      "detectSchemeId": 91,
+      "schTime": 414
+    },
+    {
+      "equipCode": "202025121112230020900",
+      "detectType": "03",
+      "detectSchemeId": 92,
+      "schTime": 30
+    },
+    {
+      "equipCode": "212025121112230030900",
+      "detectType": "03",
+      "detectSchemeId": 93,
+      "schTime": 30
+    },
+    {
+      "equipCode": "02251217101700140900",
+      "detectType": "03",
+      "detectSchemeId": 94,
+      "schTime": 25
+    },
+    {
+      "equipCode": "02251217101700150900",
+      "detectType": "03",
+      "detectSchemeId": 95,
+      "schTime": 25
+    },
+    {
+      "equipCode": "0825101012263460900",
+      "detectType": "03",
+      "detectSchemeId": 96,
+      "schTime": 414
+    },
+    {
+      "equipCode": "0126012000010001100010900",
+      "detectType": "03",
+      "detectSchemeId": 97,
+      "schTime": 108
+    },
+    {
+      "equipCode": "0126012000010001100020900",
+      "detectType": "03",
+      "detectSchemeId": 97,
+      "schTime": 108
+    },
+    {
+      "equipCode": "082512251013544",
+      "detectType": "02",
+      "detectSchemeId": 21,
+      "schTime": 414
+    },
+    {
+      "equipCode": "072025121112230010000001",
+      "detectType": "02",
+      "detectSchemeId": 24,
+      "schTime": 25
+    },
+    {
+      "equipCode": "0625121820350001202508180001",
+      "detectType": "02",
+      "detectSchemeId": 32,
+      "schTime": 25
+    },
+    {
+      "equipCode": "07251217161200010002329312",
+      "detectType": "02",
+      "detectSchemeId": 48,
+      "schTime": 25
+    },
+    {
+      "equipCode": "0225122202120001",
+      "detectType": "02",
+      "detectSchemeId": 61,
+      "schTime": 414
+    },
+    {
+      "equipCode": "0126012000010001",
+      "detectType": "02",
+      "detectSchemeId": 89,
+      "schTime": 108
+    },
+    {
+      "equipCode": "02260203094600010001",
+      "detectType": "02",
+      "detectSchemeId": 91,
+      "schTime": 414
+    },
+    {
+      "equipCode": "202025121112230020900",
+      "detectType": "02",
+      "detectSchemeId": 92,
+      "schTime": 30
+    },
+    {
+      "equipCode": "212025121112230030900",
+      "detectType": "02",
+      "detectSchemeId": 93,
+      "schTime": 30
+    },
+    {
+      "equipCode": "02251217101700140900",
+      "detectType": "02",
+      "detectSchemeId": 94,
+      "schTime": 25
+    },
+    {
+      "equipCode": "02251217101700150900",
+      "detectType": "02",
+      "detectSchemeId": 95,
+      "schTime": 25
+    },
+    {
+      "equipCode": "0825101012263460900",
+      "detectType": "02",
+      "detectSchemeId": 96,
+      "schTime": 414
+    },
+    {
+      "equipCode": "0126012000010001100010900",
+      "detectType": "02",
+      "detectSchemeId": 97,
+      "schTime": 108
+    },
+    {
+      "equipCode": "0126012000010001100020900",
+      "detectType": "02",
+      "detectSchemeId": 97,
+      "schTime": 108
+    }
+  ],
+  "qualifiedStockList": [
+    {
+      "equipCode": "0126012000010001",
+      "lowerLimitQty": 10000,
+      "qualifiedQty": 5000,
+      "distLockQty": 1300
+    },
+    {
+      "equipCode": "0225122202120001",
+      "lowerLimitQty": 1000,
+      "qualifiedQty": 2000,
+      "distLockQty": 1000
+    },
+    {
+      "equipCode": "02260203094600010001",
+      "lowerLimitQty": 1000,
+      "qualifiedQty": 3000,
+      "distLockQty": 1000
+    },
+    {
+      "equipCode": "07251217161200010002329312",
+      "lowerLimitQty": 2000,
+      "qualifiedQty": 3700,
+      "distLockQty": 1000
+    },
+    {
+      "equipCode": "0625121820350001202508180001",
+      "lowerLimitQty": 1500,
+      "qualifiedQty": 2200,
+      "distLockQty": 500
+    },
+    {
+      "equipCode": "072025121112230010000001",
+      "lowerLimitQty": 1500,
+      "qualifiedQty": 2300,
+      "distLockQty": 700
+    },
+    {
+      "equipCode": "082512251013544",
+      "lowerLimitQty": 2000,
+      "qualifiedQty": 2400,
+      "distLockQty": 550
+    }
+  ],
+  "unqualifiedStockList": [
+    {
+      "equipCode": "0126012000010001",
+      "arriveBatchNo": "2012602261000092",
+      "detectUQty": 5000,
+      "sampleFlag": "0",
+      "sampleQty": 201
+    },
+    {
+      "equipCode": "0225122202120001",
+      "arriveBatchNo": "2012602261000093",
+      "detectUQty": 500,
+      "sampleFlag": "1",
+      "sampleQty": 50
+    },
+    {
+      "equipCode": "02260203094600010001",
+      "arriveBatchNo": "2012602261000094",
+      "detectUQty": 1000,
+      "sampleFlag": "1",
+      "sampleQty": 80
+    },
+    {
+      "equipCode": "07251217161200010002329312",
+      "arriveBatchNo": "2012602261000095",
+      "detectUQty": 550,
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "equipCode": "0625121820350001202508180001",
+      "arriveBatchNo": "2012602261000096",
+      "detectUQty": 450,
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "equipCode": "072025121112230010000001",
+      "arriveBatchNo": "2012602261000097",
+      "detectUQty": 350,
+      "sampleFlag": "1",
+      "sampleQty": 5
+    },
+    {
+      "equipCode": "082512251013544",
+      "arriveBatchNo": "2012602261000098",
+      "detectUQty": 550,
+      "sampleFlag": "1",
+      "sampleQty": 80
+    }
+  ],
+  "scheduleTimeList": [
+    {
+      "workDay": "2026-03-02",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-03",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-04",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-06",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-09",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-10",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-11",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-12",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-13",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-16",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-17",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-18",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-19",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-20",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-23",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-24",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-25",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-26",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-27",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-30",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-31",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-01",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-02",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-03",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-07",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-08",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-09",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-10",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-13",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-14",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-15",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-16",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-17",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-20",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-21",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-22",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-23",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-24",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-27",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-28",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-29",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-30",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    }
+  ],
+  "nonDmdTargetEquipCodeCfgList": [
+    {
+      "equipCode": "082512251013544",
+      "aimEquipCode": "082512251013544",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "072025121112230010000001",
+      "aimEquipCode": "072025121112230010000001",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "0625121820350001202508180001",
+      "aimEquipCode": "0625121820350001202508180001",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "07251217161200010002329312",
+      "aimEquipCode": "07251217161200010002329312",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "0225122202120001",
+      "aimEquipCode": "0225122202120001",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "0126012000010001",
+      "aimEquipCode": "0126012000010001100010900",
+      "allocationRatio": 50.0
+    },
+    {
+      "equipCode": "0126012000010001",
+      "aimEquipCode": "0126012000010001100020900",
+      "allocationRatio": 50.0
+    },
+    {
+      "equipCode": "02260203094600010001",
+      "aimEquipCode": "02260203094600010001",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "202025121112230020900",
+      "aimEquipCode": "202025121112230020900",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "212025121112230030900",
+      "aimEquipCode": "212025121112230030900",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "02251217101700140900",
+      "aimEquipCode": "02251217101700140900",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "02251217101700150900",
+      "aimEquipCode": "02251217101700150900",
+      "allocationRatio": 100.0
+    },
+    {
+      "equipCode": "0825101012263460900",
+      "aimEquipCode": "0825101012263460900",
+      "allocationRatio": 100.0
+    }
+  ]
+}

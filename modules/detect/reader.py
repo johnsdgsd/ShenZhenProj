@@ -33,6 +33,9 @@ import pandas as pd
 
 from .category import parse_device_category_name
 from .constants import (
+    ACCESS_DIRECT,
+    ACCESS_HUGAN,
+    ACCESS_UNKNOWN,
     CAT_NAME_TO_DETECT_CODE,
     DETECT_EQUIP_TYPE_MAP,
     DEVICE_TYPE_MAP,
@@ -75,6 +78,23 @@ def _equip_cls_name(code):
     return EQUIP_CLS_MAP.get(code, code)
 
 
+def _sample_flag_name(val):
+    """是否已抽检（sampleFlag）归一化为 是/否。
+
+    接口 v0.0.6 定义 0否/1是；8.28 算法只认中文 '是' 为已抽检，
+    其余（'否'/'0'/空）视为未抽检（空值由 prepare 兜底为已抽检）。
+    此处把接口编码统一转成 是/否，保证两条路径语义一致。
+    """
+    if val is None or pd.isna(val):
+        return None
+    s = str(val).strip()
+    if s in ('1', '1.0', '是', 'True', 'true'):
+        return '是'
+    if s in ('0', '0.0', '否', 'False', 'false'):
+        return '否'
+    return s
+
+
 def _infer_category(equip_type_code_or_name):
     """从所检设备表类型推断设备分类（中文名）。
 
@@ -90,18 +110,19 @@ def _infer_category(equip_type_code_or_name):
 
 
 def _infer_access(equip_type_code):
-    """从所检设备表类型编码推断接入方式（'经互感接入' / '直接接入'）。
+    """从所检设备表类型编码推断接入方式码（ACCESS_HUGAN='1' / ACCESS_DIRECT='0'）。
 
     接口入参没有"接入方式"字段，编码 11-14 为经互感系列，15-18 为直接接入系列。
+    8.28 起核心算法按码判断，Excel 路径的中文接入方式由 prepare 归一化为同套码。
     """
     if equip_type_code is None or pd.isna(equip_type_code):
-        return ''
+        return ACCESS_UNKNOWN
     code = str(equip_type_code).strip()
     if code in HUGAN_ACCESS_CODES:
-        return '经互感接入'
+        return ACCESS_HUGAN
     if code in DETECT_EQUIP_TYPE_MAP:
-        return '直接接入'
-    return ''
+        return ACCESS_DIRECT
+    return ACCESS_UNKNOWN
 
 
 def _parse_dt(value):
@@ -276,7 +297,7 @@ def _build_arrival(data) -> pd.DataFrame:
             '设备规格': r.get('equipCode'),
             '数量': r.get('arriveQty'),
             '预计到货日期': _parse_dt(r.get('arriveDate')),
-            '是否已抽检': r.get('sampleFlag'),      # 0否/1是（v0.0.6 新增，原值由 prepare 解析）
+            '是否已抽检': _sample_flag_name(r.get('sampleFlag')),  # 0否/1是 → 是/否（v0.0.6）
             '抽检数量': r.get('sampleQty'),
         })
     return _frame('arrival', rows)
@@ -386,7 +407,7 @@ def _build_unqualified(data) -> pd.DataFrame:
             '设备类型码': r.get('equipCode'),
             '设备分类': _equip_cls_name(r.get('equipCls')),
             '可检库存': r.get('detectUQty'),
-            '是否已抽检': r.get('sampleFlag'),      # 0否/1是（v0.0.6 新增，原值由 prepare 解析）
+            '是否已抽检': _sample_flag_name(r.get('sampleFlag')),  # 0否/1是 → 是/否（v0.0.6）
             '抽检数量': r.get('sampleQty'),
         })
     return _frame('unqualified', rows)

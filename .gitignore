@@ -12,5 +12,8 @@ __pycache__/
 现场部署包/
 现场部署包.zip
 
+# 兑底输出 Excel（根目录，可随时重新生成）
+/检定排程计划_*.xlsx
+
 # 一次性交付快照（extractor 已迁入 modules/detect/extractor.py，报文在 docs/报文 有副本）
 算法数据提取交付/

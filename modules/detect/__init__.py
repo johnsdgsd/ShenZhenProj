@@ -1,5 +1,5 @@
 """
-检定排程算法模块（8.25 核心）
+检定排程算法模块（8.28 核心）
 ============================
 自包含包：数据层（reader/writer/extractor）+ 算法层（scheduler/prepare/pipeline）+ 常量。
 

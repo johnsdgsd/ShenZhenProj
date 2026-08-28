@@ -73,6 +73,12 @@ EQUIP_CLS_MAP: Dict[str, str] = {
 # 编码 11-14 = 经互感器接入；15-18 = 直接接入
 HUGAN_ACCESS_CODES = {'11', '12', '13', '14'}
 
+# 接入方式码（内部统一码，8.28 起核心算法按码判断）：
+# Excel 接入方式列是中文（经互感接入/直接接入），reader/数据层归一化为码
+ACCESS_HUGAN = '1'      # 经互感接入
+ACCESS_DIRECT = '0'     # 直接接入
+ACCESS_UNKNOWN = ''     # 未知/空
+
 # ==================================================================
 # 8.16 算法统一码值体系（VW_DETECT_EQUIP_TYPE 码为分类统一键）
 # 来源：docs/导出数据/码值映射字典.xlsx（与接口 v2.0 §2 系统字典一致），
@@ -133,6 +139,30 @@ CAT_NAME_TO_EQUIP_CLS_CODE: Dict[str, int] = {
 # VW_EQUIP_CLS 编码 → 名称（接口 v2.0 §2.4 / 映射 xlsx 一致）
 EQUIP_CLS_CODE_TO_NAME: Dict[int, str] = {int(k): v for k, v in EQUIP_CLS_MAP.items()}
 
+# 检定设备类型码（VW_DETECT_EQUIP_TYPE）→ VW_EQUIP_CLS 码（8.28 起核心按码推导出参，
+# 不再走中文名中转；与 CAT_NAME_TO_EQUIP_CLS_CODE 按 DETECT_CODE_TO_NAME 逐条一致）
+DEV_CAT_TO_EQUIP_CLS_CODE: Dict[int, int] = {
+    1: 1,    # 单相电能表
+    2: 2,    # 三相直接表
+    3: 2,    # 三相互感表
+    4: 7,    # 10kV电压互感器
+    5: 21,   # 20kV电压互感器
+    6: 6,    # 10kV电流互感器
+    7: 20,   # 20kV电流互感器
+    8: 8,    # 低压电流互感器
+    9: 8,    # 低压电流互感器_大变比
+    10: 8,   # 低压电流互感器_DBI
+    14: 19,  # 智能量测终端
+}
+
+# 检定设备类型码（VW_DETECT_EQUIP_TYPE）→ VW_EQUIP_CATEG 设备类别码
+DEV_CAT_TO_EQUIP_CATEG_CODE: Dict[int, int] = {
+    1: 1, 2: 1, 3: 1,           # 电能表
+    4: 2, 5: 2, 6: 2, 7: 2,     # 互感器
+    8: 2, 9: 2, 10: 2,          # 低压电流互感器
+    14: 9,                      # 计量自动化终端
+}
+
 # VW_EQUIP_CATEG 设备类别 编码 → 名称（接口 v2.0 §2.5）
 EQUIP_CATEG_CODE_TO_NAME: Dict[int, str] = {
     1: '电能表', 2: '互感器', 9: '计量自动化终端', 10: '计量表箱',
@@ -153,8 +183,8 @@ DMD_PLAN_TYPE_CODE_TO_NAME: Dict[int, str] = {1: '月计划', 2: '紧急计划'}
 
 # 默认检定类型（8.16 L101-103）：首次检定
 DEFAULT_DETECT_TYPE_CODE = 3
-# 抽检检定类型：到货后抽样检测（编码 2，8.25 新增）
-SAMPLING_DETECT_TYPE_CODE = 2
+# 抽检检定类型：到货后抽样检测（编码 2，8.25 新增；8.28 更名）
+SAMPLE_DETECT_TYPE_CODE = 2
 # 默认需求计划类型：月计划
 DEFAULT_DMD_PLAN_TYPE_CODE = 1
 
