@@ -2,7 +2,7 @@
 
 ## Context
 
-电能表检定排程与库存优化算法，当前基线为 8.28 脚本 `docs/算法脚本/检定排程/检定排程python代码_8.28最新.py`（统一码值体系 + detectSchemeId 输出 + 抽检流程重构 + 需求优先事后校正，保留作为参考，**勿修改**）；
+电能表检定排程与库存优化算法，当前基线为 8.28最新1 脚本 `docs/算法脚本/检定排程/检定排程python代码_8.28最新1.py`（统一码值体系 + detectSchemeId 输出 + 抽检流程重构 + 需求优先事后校正 + 满仓补齐，保留作为参考，**勿修改**）；
 最早单文件脚本 `检定排程python代码最新8.03.py`（~564 行）亦保留作历史参考。输入/输出均硬编码 Excel。
 现重构为**算法服务**，核心调度算法**零修改**迁移到 `modules/detect/`：
 
@@ -24,7 +24,7 @@
 ├── modules/                   # 算法模块注册中心（每个算法域一个自包含包）
 │   ├── base.py                # AlgorithmModule 数据类（模块契约：接口路径 / reader / pipeline / writer）
 │   ├── __init__.py            # all_modules() / get_module(name) 注册中心（import 即注册）
-│   ├── detect/                # 检定排程模块（8.28 核心，已接入 HTTP）
+│   ├── detect/                # 检定排程模块（8.28最新1 核心，已接入 HTTP）
 │   │   ├── __init__.py        # MODULE = AlgorithmModule(...) 注册声明（interface_path 非 None）
 │   │   ├── constants.py       # 接口枚举字典 + 8.16 统一码值字典（硬编码）+ SchedulingConfig + DataSourceConfig
 │   │   ├── category.py        # 设备分类解析（8.16 版：中文名→VW_DETECT_EQUIP_TYPE 码 + 码值推导 helper）
@@ -44,7 +44,7 @@
 └── docs/                      # 文档与参考文件
     ├── README.md              # 文件索引（按时间顺序）
     ├── 算法脚本/              # 原始算法脚本（勿修改）
-    │   ├── 检定排程/          # 检定 8.03 / 8.06 / 8.07 / 8.11 / 8.16 / 8.17 / 8.25 / 8.28
+    │   ├── 检定排程/          # 检定 8.03 / 8.06 / 8.07 / 8.11 / 8.16 / 8.17 / 8.25 / 8.28 / 8.28最新1
     │   └── 到货排程/          # 到货 8.13 / 8.14
     ├── 报文/                  # 真实请求报文（0807 / 0812 等，含补抽检字段版）
     ├── 导出数据/              # 码值映射字典.xlsx / 检定仓情况-20260807.xlsx / 检定数据记录文档.md 等
@@ -82,7 +82,7 @@ CLI 与 HTTP 共用 `modules.detect.pipeline.run_pipeline()`，行为完全一�
 9. **编号类型统一**：线体编号等转 int，保证 `chambers` key 与 `line_name_map` / `chamber_config` 一致。
 10. **模块可扩展**：新增算法模块 = 新建 `modules/<域>/` 包 + 声明 `MODULE = AlgorithmModule(interface_path=...)`，`server/blueprints` 通用工厂按 `modules.all_modules()` 自动生成蓝图，无需改动 server/cli 本体（骨架模块 `MODULE=None` 不注册）。
 11. **路径操作统一 pathlib**：所有文件/路径操作用 `pathlib.Path`（读入 `read_excel(file_path: Path)`、写出 `write_excel(..., output_path: Path)`、配置 `DataSourceConfig.output_path`、测试根目录定位），不用 `os.path`；CLI 入口处把 argparse 字符串参数转为 `Path`。
-12. **8.25/8.28 抽检流程**（甲方 20260825 新需求 + 接口 v0.0.6）：`arriveBatchList`/`unqualifiedStockList` 增 是否已抽检（sampleFlag，0否/1是）、抽样数量（sampleQty）；未抽检批次先安排**抽检**（检定类型=2 到货后抽样检测），抽检不产生合格品库存；出参增 `detectType`（02 抽样试验 / 03 首次检定）。8.28 重构：`ensure_sample_inspection()`（`batch_sample_done` 缓存、无抽检返回 0）+ `schedule_batch` 参数化（detect_type_code / count_to_inventory）；**未抽检批次的抽检数量从批次数量中扣除**（只抽检、不再首检）；12.7 **需求优先事后校正**（首检记录按各设备码总需求扣除期初库存后的需检定数量、按完成时间先后标记）；`get_next_start_minutes` 的 earliest 分支简化为 `candidate_min = earliest_start_minutes`。适配：空值默认视为**已抽检**（旧报文/旧 Excel 兼容，`row.get` 兜底）；`batch_sample_done` 在 `run_scheduling` 中与 `chamber_time` 一同重置（HTTP 长驻服务重入安全）。
+12. **8.25/8.28/8.28最新1 抽检流程**（甲方 20260825 新需求 + 接口 v0.0.6）：`arriveBatchList`/`unqualifiedStockList` 增 是否已抽检（sampleFlag，0否/1是）、抽样数量（sampleQty）；未抽检批次先安排**抽检**（检定类型=2 到货后抽样检测），抽检不产生合格品库存；出参增 `detectType`（02 抽样试验 / 03 首次检定）。8.28 重构：`ensure_sample_inspection()`（`batch_sample_done` 缓存、无抽检返回 0）+ `schedule_batch` 参数化（detect_type_code / count_to_inventory）；**未抽检批次的抽检数量从批次数量中扣除**（只抽检、不再首检）；12.7 **需求优先事后校正**（首检记录按各设备码总需求扣除期初库存后的需检定数量、按完成时间先后标记）；`get_next_start_minutes` 的 earliest 分支简化为 `candidate_min = earliest_start_minutes`。8.28最新1：**满仓补齐**（partial_registry——同一“批次+目标设备类型”分段排程的不满仓末批，下一段先补齐到满仓，仅首次检定）+ **抽检记录需求优先标记**（ensure_sample_inspection / schedule_non_demand_batch 增加 is_priority 参数，需求循环与 12.5 超额部分传 True；12.7 校正仍只针对首检记录）。适配：空值默认视为**已抽检**（旧报文/旧 Excel 兼容，`row.get` 兜底）；`batch_sample_done`/`partial_registry` 在 `run_scheduling` 中与 `chamber_time` 一同重置（HTTP 长驻服务重入安全）。
 13. **数据层解耦与输出码值化**（8.28 起）：**Excel 数据含中文不规范、HTTP 数据为规范编码**——中文→码归一化全部收敛在数据层（reader/prepare）：sampleFlag 0/1→是/否（reader）、接入方式中文→码 ACCESS_HUGAN/'1'/'0'（prepare._normalize_access）、设备分类名→码、所检设备表类型名→码；**核心调度算法只按编码判断**（终端仓规则按 `dev_code_to_access == ACCESS_HUGAN`、20kV 优先排序按码 5/7、出参 equipCls/equipCateg 按 `DEV_CAT_TO_*` 码→码推导，不再走中文名中转）。**输出全部码值化**（Excel 与 JSON 同步）：能找到码值映射的中文一律输出编码字符（VW 编码列 2 位字符串、需求优先 '1'/'0'、中文名称列删除）；无码值映射的字段保持原样（检定线名称/月份/批次号/设备码等标识）。HTTP 测试用 `tests/excel_to_json_payload.py` 把 Excel 转成 v0.0.6 九集合 JSON（`docs/报文/0825_检定仓情况_转json.json`），CLI 直接读 Excel，两条路径结果一致。
 
 ## 启动方式

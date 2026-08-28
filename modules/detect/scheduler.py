@@ -1,8 +1,15 @@
 """
-检定排程 — 核心调度算法（8.28 版）
-===================================
-从 8.28 脚本 `docs/算法脚本/检定排程/检定排程python代码_8.28最新.py` 迁移，
+检定排程 — 核心调度算法（8.28最新1 版）
+=======================================
+从 8.28最新1 脚本 `docs/算法脚本/检定排程/检定排程python代码_8.28最新1.py` 迁移，
 **核心逻辑零修改**（仅补充日志 + 输出码值化改造，不改变任何计算）。
+
+8.28最新1 变化（相对 8.28，本文件体现）：
+- 满仓补齐：同一“批次+目标设备类型”因按月/按需求优先/按目标比例分多段排程时，
+  上一段残留的不满仓末批在下一段先补齐到满仓（partial_registry 登记表，仅首次检定）
+- 抽检记录需求优先标记：ensure_sample_inspection / schedule_non_demand_batch 增加
+  is_priority 参数，需求排程（需求循环 + 12.5 超额部分）的抽检记录标为 是；
+  12.7 按量校正仍只针对首次检定记录
 
 8.28 变化（相对 8.25，本文件体现）：
 - 抽检重构：ensure_sample_inspection()（batch_sample_done 缓存、无抽检返回 0），
@@ -117,6 +124,9 @@ batch_sample_info = {}      # 到货批次号 → {'sampled': 是否已抽检, '
 chamber_time = {}
 schedule_details = []
 batch_sample_done = {}      # 批次号 → 抽检完成时间(分钟)；值为0表示无需抽检（8.28）
+# 满仓补齐登记表：键 (批次号, 目标设备类型码) → {'idx': 记录下标, 'gap': 距满仓还差数量}
+# 用于把同一“批次+目标类型”因按月/按目标比例分多段排程而残留的不满仓末批，逐段补齐到满仓（8.28最新1）
+partial_registry = {}
 
 MAX_DAY_SEARCH = 365 * 10  # 最大搜索天数，防止死循环
 # 最晚完工日期：排程时间配置中最后一天。
@@ -233,9 +243,10 @@ def get_next_start_minutes(prev_end_minutes, duration, line_id, earliest_start_m
     raise OverflowError(f"时间计算超过 {MAX_DAY_SEARCH} 天仍未找到合适时段，请检查排程配置。")
 
 
-def ensure_sample_inspection(batch_no, dev_code, month, earliest_start=0, target_splits=None):
+def ensure_sample_inspection(batch_no, dev_code, month, earliest_start=0, target_splits=None, is_priority=False):
     """批次是否已抽检标志为'否'时，按抽检数量先安排抽检（检定成需求的设备类型码）；
     target_splits: [(排程设备码, 目标设备类型码, 比例)]，取占比最大的需求目标设备类型码；
+    is_priority: 该批次是否用于满足需求，决定抽检记录的“是否为需求优先”标记（8.28最新1）；
     返回抽检完成时间（分钟，作为该批次后续首检的最早开始时间），无需抽检时返回0"""
     if batch_no in batch_sample_done:
         return batch_sample_done[batch_no]
@@ -249,10 +260,10 @@ def ensure_sample_inspection(batch_no, dev_code, month, earliest_start=0, target
         s_dev, t_dev, _ = max(target_splits, key=lambda t: t[2])
     else:
         s_dev, t_dev = dev_code, dev_code
-    logger.info("  批次 %s 未抽检，先安排抽检 %d 台（排程设备码 %s → 目标设备类型码 %s）",
-                batch_no, info['sample_qty'], s_dev, t_dev)
+    logger.info("  批次 %s 未抽检，先安排抽检 %d 台（排程设备码 %s → 目标设备类型码 %s，需求优先=%s）",
+                batch_no, info['sample_qty'], s_dev, t_dev, is_priority)
     before = len(schedule_details)
-    schedule_batch(batch_no, s_dev, info['sample_qty'], is_priority=False, month=month,
+    schedule_batch(batch_no, s_dev, info['sample_qty'], is_priority=is_priority, month=month,
                    earliest_start=earliest_start, target_dev_code=t_dev,
                    detect_type_code=SAMPLE_DETECT_TYPE_CODE, count_to_inventory=False)
     sample_end = 0
@@ -316,6 +327,24 @@ def schedule_batch(batch_no, dev_code, quantity, is_priority, month, earliest_st
     equip_cls_code = get_equip_cls_code(dev_cat)
     equip_categ_code = get_equip_categ_code(dev_cat)
     detect_scheme_id = get_detect_scheme_id(dev_code)  # 8.17：规格表参数标识
+
+    # 满仓补齐：同一“批次+目标设备类型”上一段排程若残留了未装满的末批，先在此补齐到满仓，
+    # 避免同一批次被拆成多段（按月/按需求优先/按目标比例）后每一段都留下一个不满仓小批（8.28最新1）
+    part_key = (batch_no, target_dev_code)
+    if detect_type_code == DEFAULT_DETECT_TYPE_CODE:
+        pinfo = partial_registry.pop(part_key, None)
+        if pinfo is not None and pinfo['gap'] > 0:
+            topup = min(pinfo['gap'], remaining)
+            if topup > 0:
+                schedule_details[pinfo['idx']]['每批数量'] += topup
+                if count_to_inventory:
+                    inventory[dev_code] += topup
+                remaining -= topup
+                pinfo['gap'] -= topup
+                if pinfo['gap'] > 0:
+                    partial_registry[part_key] = pinfo
+        if remaining <= 0:
+            return quantity
 
     while remaining > 0:
         if is_priority and dev_cat == 1:
@@ -385,6 +414,9 @@ def schedule_batch(batch_no, dev_code, quantity, is_priority, month, earliest_st
         remaining -= batch_qty
         available[0] = (ch, max_cap)
         sub_counter += 1
+        # 首次检定的末批未装满时登记，供后续同批次+目标类型继续补齐（满仓优化，8.28最新1）
+        if detect_type_code == DEFAULT_DETECT_TYPE_CODE and batch_qty < max_cap:
+            partial_registry[part_key] = {'idx': len(schedule_details) - 1, 'gap': max_cap - batch_qty}
     return quantity
 
 
@@ -412,8 +444,12 @@ def get_batch_last_p_end_minutes(batch_no):
     return max_end
 
 
-def schedule_non_demand_batch(batch_no, dev_code, quantity, month, earliest_start):
-    """按非需求设备目标设备类型配置，将非需求批次按比例拆分并排程。"""
+def schedule_non_demand_batch(batch_no, dev_code, quantity, month, earliest_start, is_priority=False):
+    """按非需求设备目标设备类型配置，将非需求批次按比例拆分并排程。
+
+    is_priority: 该批次是否服务于需求（8.28最新1：决定抽检记录的需求优先标记；
+    首检子任务仍按非需求优先排程）。
+    """
     targets = non_demand_target_config.get(dev_code, [(dev_code, 100)])
     dev_cat = dev_code_to_cat.get(dev_code, 0)
     # 对于单相电能表(编码1)的非需求批次：设备码应为大码，目标设备类型码应为需求明细中的设备码(小码)
@@ -429,7 +465,7 @@ def schedule_non_demand_batch(batch_no, dev_code, quantity, month, earliest_star
         big_code = dev_code
         small_code = dev_code
         sample_splits = [(t_code, t_code, pct) for t_code, pct in targets]
-    sample_end = ensure_sample_inspection(batch_no, dev_code, month, earliest_start, target_splits=sample_splits)
+    sample_end = ensure_sample_inspection(batch_no, dev_code, month, earliest_start, target_splits=sample_splits, is_priority=is_priority)
     if sample_end > earliest_start:
         earliest_start = sample_end
     # 若配置中只有一个目标且为100%，直接使用原设备码
@@ -467,12 +503,13 @@ def run_scheduling():
     故须声明为 global（8.03 只做原地修改无需）。
     """
     global chamber_time, schedule_details, pending_batches
-    global batch_sample_done
+    global batch_sample_done, partial_registry
     chamber_time = {ch: 0 for ch in chambers.keys()}
     schedule_details = []
-    # 8.28 抽检状态重置（HTTP 长驻服务重入安全：8.28 脚本单次运行无此需要，
+    # 8.28 抽检/满仓补齐状态重置（HTTP 长驻服务重入安全：8.28 脚本单次运行无此需要，
     # 这里与 chamber_time/schedule_details 一同重置，单次运行语义与 8.28 完全一致）
     batch_sample_done = {}
+    partial_registry = {}
 
     logger.info("===== 主调度开始 =====")
     logger.info("月份列表：%s（共 %d 个月）", months, len(months))
@@ -548,7 +585,7 @@ def run_scheduling():
                     # 按需求明细中的设备码(小码)比例分配目标设备类型码
                     target_props = big_code_target_proportions.get(dev_code, [(dev_code, 1.0)])
                     sample_splits = [(dev_code, t_code, pct) for t_code, pct in target_props]
-                    sample_end = ensure_sample_inspection(batch_no, dev_code, month, est_minutes, target_splits=sample_splits)
+                    sample_end = ensure_sample_inspection(batch_no, dev_code, month, est_minutes, target_splits=sample_splits, is_priority=True)
                     if sample_end > est_minutes:
                         est_minutes = sample_end
                     if len(target_props) == 1:
@@ -621,7 +658,7 @@ def run_scheduling():
                 batch_p_end = get_batch_last_p_end_minutes(batch_no)
                 if batch_p_end > est_minutes:
                     est_minutes = batch_p_end
-                schedule_non_demand_batch(batch_no, dev_code, excess, month, earliest_start=est_minutes)
+                schedule_non_demand_batch(batch_no, dev_code, excess, month, earliest_start=est_minutes, is_priority=True)
                 batch[2] = future_need
                 new_pending.append(batch)
             else:
@@ -667,7 +704,8 @@ def run_scheduling():
 
     # 12.7. "是否为需求优先"标记校正：
     # 优先满足需求量的部分（总需求扣除期初合格品库存后仍需检定的数量）标为需求优先，
-    # 需求数量满足后再检定的部分标为非需求优先；抽检记录不参与，始终为非需求优先
+    # 需求数量满足后再检定的部分标为非需求优先；抽检记录已在排程时按批次是否服务需求
+    # 打出"是/否"（8.28最新1），因此这里按量校正只针对首次检定（编码3），抽检记录不参与
     total_demand_by_dev = defaultdict(int)
     for m, items in demand_by_month.items():
         for dev_code, qty in items:
