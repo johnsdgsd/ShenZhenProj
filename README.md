@@ -1,7 +1,7 @@
 # 检定排程算法服务
 
-电能表检定排程与库存优化算法服务。核心调度算法从 8.17 脚本
-`docs/算法脚本/检定排程/检定排程python代码_8.17.py` **零修改迁移**（原脚本保留作参考，勿改），
+电能表检定排程与库存优化算法服务。核心调度算法从 8.25 脚本
+`docs/算法脚本/检定排程/检定排程python代码_8.25.py` **零修改迁移**（原脚本保留作参考，勿改），
 重构为**算法服务 + 模块化代码**：
 
 - **生产环境**：被计量生产调度平台通过 HTTP 调用，JSON 入参（9 集合）→ JSON 出参
@@ -26,7 +26,7 @@
 ├── modules/                    # 算法模块注册中心（每个算法域一个自包含包）
 │   ├── base.py                 # AlgorithmModule 数据类（模块契约）
 │   ├── __init__.py             # all_modules() / get_module() 注册中心
-│   ├── detect/                 # 检定排程模块（8.17 核心，已接入 HTTP）
+│   ├── detect/                 # 检定排程模块（8.25 核心，已接入 HTTP）
 │   │   ├── __init__.py         # MODULE 注册声明（interface_path 非 None）
 │   │   ├── constants.py        # 接口枚举字典 + 8.16 统一码值字典（硬编码）+ SchedulingConfig
 │   │   ├── category.py         # 设备分类解析（中文名/码 双分类器）
@@ -230,16 +230,17 @@ docker run --rm -v "$PWD":/data jiankeng-scheduler python cli.py /data/输入.xl
 |---|---|
 | `deviceParaList` | 流水线检定仓参数（线体/仓/所检设备表类型/表位数） |
 | `dmdPlanDetList` | 需求明细（月份/设备类型码大码/数量/设备分类 equipCls） |
-| `arriveBatchList` | 到货批次（批次号/设备码/数量/到货日期/equipCls） |
-| `detectSchList` | 检定方案（设备码、检定方案耗时 schTime） |
+| `arriveBatchList` | 到货批次（批次号/设备码/数量/到货日期/equipCls/sampleFlag 是否已抽检/sampleQty 抽样数量） |
+| `detectSchList` | 检定方案（设备码、检定方案耗时 schTime、detectSchemeId、detectType） |
 | `qualifiedStockList` | 合格品库存 |
-| `unqualifiedStockList` | 非合格品库存 |
+| `unqualifiedStockList` | 非合格品库存（含 sampleFlag 是否已抽检/sampleQty 抽样数量） |
 | `scheduleTimeList` | 排程时间配置（工作日、上下班时间） |
 | `scheduleConfigList` | 流水线调度配置（调度时间间隔、允许加班时长） |
 | `nonDmdAimEquipCodeCfgList` | 非需求设备目标设备类型码分配配置 |
 
 **真实请求样例**：`docs/报文/0812_单请求.json`（0812 报文第一个请求的合法单 JSON，
-9 集合齐全，可直接作 Postman Body）。
+9 集合齐全，可直接作 Postman Body）；`docs/报文/0812_单请求_补抽检字段.json`
+（v0.0.6 形态：全部批次补 sampleFlag/sampleQty，含 2 个到货批次 + 1 个非合格品批次未抽检）。
 
 ### 5.2 HTTP 出参
 
@@ -264,7 +265,8 @@ docker run --rm -v "$PWD":/data jiankeng-scheduler python cli.py /data/输入.xl
       "projectedEndTime": "2026-08-12 15:54:00",
       "detectPlanQty": 20,
       "demandFlag": "0",                   // 1=需求优先 0=否
-      "weekDayStartAndEnd": ""             // 待企业确认口径
+      "weekDayStartAndEnd": "",            // 待企业确认口径
+      "detectType": "03"                   // 检定类别：02 抽样试验 / 03 首次检定（8.25）
     }
   ]
 }
@@ -272,6 +274,7 @@ docker run --rm -v "$PWD":/data jiankeng-scheduler python cli.py /data/输入.xl
 
 > 码值：`equipCls`/`equipCateg`/`deviceType` 均为 2 位码（8.16 统一码值体系）。
 > `detectSchemeId` 自 8.17 起生产（来源 spec 参数标识，含大小码回退，查不到返回空串）。
+> `detectType`（检定类别）自 8.25 起生产：未抽检批次先安排 02 抽样试验，之后 03 首次检定。
 > `equipDesc` / `weekDayStartAndEnd` 算法暂不生产，返回空串，待企业确认口径。
 
 ### 5.3 Excel 入参（离线兑底，12 个 sheet）
@@ -282,11 +285,11 @@ docker run --rm -v "$PWD":/data jiankeng-scheduler python cli.py /data/输入.xl
 | 检定线信息表 | 检定线 ID 与名称 |
 | 检定仓类型表 | 仓类型 ID 与名称 |
 | 检定仓配置表 | 检定线与检定仓的仓类型关联 |
-| 到货排程-到货计划旧表 | 到货批次、设备、数量、预计到货日期 |
+| 到货排程-到货计划旧表 | 到货批次、设备、数量、预计到货日期、是否已抽检、抽检数量 |
 | 需求明细 | 所属月份、设备码大码、申请数量、设备码、设备分类 |
 | 规格设备码信息表 | 设备码、设备分类、接入方式、自动检定时间、设备码描述、参数标识 |
 | 合格品库存信息表 | 设备码、合格品库存、未配送库存、安全库存 |
-| 非合格品库存 | 到货批次、设备码、设备分类、可检库存 |
+| 非合格品库存 | 到货批次、设备码、设备分类、可检库存、是否已抽检、抽检数量 |
 | 排程时间配置 | 工作日日期、开始/结束时间 |
 | 调度时间间隔配置 | 线体编号、调度时间间隔（秒）、允许加班时长 |
 | 非需求设备目标设备类型配置 | 设备类型码大码、目标设备类型码、分配比例 |

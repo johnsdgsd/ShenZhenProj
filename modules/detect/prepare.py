@@ -3,13 +3,15 @@
 ========================
 process_data()：把 reader 读出的 12 个 {key: DataFrame} 填充到 scheduler 模块级全局变量。
 
-逻辑与 8.17 脚本 `检定排程python代码_8.17.py` 相应段落逐行一致，
-零修改迁移（仅补充日志 + 硬编码参数改从 SchedulingConfig 取值，默认值与 8.17 相同）。
+逻辑与 8.25 脚本 `检定排程python代码_8.25.py` 相应段落逐行一致，
+零修改迁移（仅补充日志 + 硬编码参数改从 SchedulingConfig 取值，默认值与 8.25 相同）。
 
 8.16 起分类统一以 VW_DETECT_EQUIP_TYPE 码为键：spec.设备分类（中文名）经
 CAT_NAME_TO_DETECT_CODE 转码存入 dev_code_to_cat，并新增 dev_code_to_cat_name 存中文名。
 8.17 起新增 dev_code_to_detect_scheme_id：读取 spec.参数标识 作为 detectSchemeId
 （row.get 兜底旧 Excel 无「参数标识」列的场景，行为等价）。
+8.25 起新增 batch_sample_info：解析到货/非合格品批次的 是否已抽检/抽检数量
+（row.get 兜底旧 Excel 无此列的场景——视为已抽检、抽检数量 0，行为等价）。
 
 日志约定：
 - INFO    : 各准备步骤规模（输入/映射/仓/时间配置/库存/批次/需求）
@@ -30,8 +32,27 @@ from .constants import CAT_NAME_TO_DETECT_CODE
 logger = logging.getLogger(__name__)
 
 
+def _parse_sampled(val):
+    """把"是否已抽检"转为布尔值：是→已抽检(True)，否/0→未抽检(False)，空值默认视为已抽检（8.25 原文）。"""
+    if pd.isna(val):
+        return True
+    s = str(val).strip()
+    if s in ('否', '0', '0.0', 'False', 'false', ''):
+        return False
+    return True
+
+
+def _safe_int(val, default=0):
+    if pd.isna(val):
+        return default
+    try:
+        return int(val)
+    except (ValueError, TypeError):
+        return default
+
+
 def process_data(dfs, sched_cfg):
-    """填充 scheduler 模块级全局变量（20 个输入）。
+    """填充 scheduler 模块级全局变量（21 个输入）。
 
     逻辑与 8.16 脚本相应段落逐行一致。
     dfs 来自 reader（Excel 或 JSON），列名与算法期望一致。
@@ -286,6 +307,10 @@ def process_data(dfs, sched_cfg):
     # ---- 待处理批次（非合格品库存 + 到货计划）----
     pending_batches = deque()
     n_unqualified = 0
+    # 【甲方20260825新需求】解析"是否已抽检"标志与"抽检数量"
+    #   是否已抽检=否 的批次，需先按抽检数量做抽检（到货后抽样检测），抽检完成后才能做首检
+    # 注：row.get 兜底旧 Excel 无「是否已抽检/抽检数量」列的场景（视为已抽检、抽检数量 0）
+    batch_sample_info = {}  # batch_no -> {'sampled': bool(True表示已抽检), 'sample_qty': int}
 
     for _, row in df_unqualified.iterrows():
         batch_no = row['到货批次号']
@@ -293,6 +318,10 @@ def process_data(dfs, sched_cfg):
         qty = int(row['可检库存'])
         est_date = datetime(2026, 1, 1, 0, 0, 0)
         pending_batches.append([str(batch_no), dev_code, qty, qty, est_date])
+        batch_sample_info[str(batch_no)] = {
+            'sampled': _parse_sampled(row.get('是否已抽检')),
+            'sample_qty': _safe_int(row.get('抽检数量'), 0),
+        }
         n_unqualified += 1
 
     for _, row in df_arrival.iterrows():
@@ -305,10 +334,19 @@ def process_data(dfs, sched_cfg):
         if pd.isna(est_date):
             est_date = datetime(2026, 3, 31)
         pending_batches.append([str(batch_no), dev_code, qty, qty, est_date])
+        batch_sample_info[str(batch_no)] = {
+            'sampled': _parse_sampled(row.get('是否已抽检')),
+            'sample_qty': _safe_int(row.get('抽检数量'), 0),
+        }
 
     pending_batches = deque(sorted(pending_batches, key=lambda x: (x[4], x[0])))
     logger.info("待处理批次总数: %d（非合格品库存 %d 批 + 到货计划 %d 批）",
                 len(pending_batches), n_unqualified, len(pending_batches) - n_unqualified)
+    need_sampling_batches = [bn for bn, info in batch_sample_info.items()
+                             if not info['sampled'] and info['sample_qty'] > 0]
+    logger.info("需安排抽检的批次: %d 个", len(need_sampling_batches))
+    for bn in need_sampling_batches:
+        logger.info("  %s: 抽检数量 %d", bn, batch_sample_info[bn]['sample_qty'])
 
     # ---- 补充映射：从需求明细表的"设备分类"列读取，补充 spec 中缺失的设备码映射 ----
     for _, row in df_demand.iterrows():
@@ -363,6 +401,7 @@ def process_data(dfs, sched_cfg):
     scheduler.base_date = base_date
     scheduler.inventory = inventory
     scheduler.pending_batches = pending_batches
+    scheduler.batch_sample_info = batch_sample_info
     scheduler.demand_by_month = demand_by_month
     scheduler.months = months
     # chamber_time / schedule_details 由 run_scheduling() 内部初始化

@@ -18,6 +18,10 @@
 
 8.17 数据层补全：
 - spec 增列 参数标识（detectSchList.detectSchemeId），作为出参 detectSchemeId 的数据源
+
+8.25 数据层补全（接口 v0.0.6）：
+- arrival / unqualified 增列 是否已抽检（sampleFlag）、抽检数量（sampleQty）
+- 出参新增 detectType（检定类别：02 抽样试验 / 03 首次检定）
 """
 from __future__ import annotations
 
@@ -174,11 +178,11 @@ _COLS = {
     'line_info': ['检定线ID', '检定线名称'],
     'chamber_type': ['仓类型ID', '仓类型名称'],
     'chamber_config': ['检定线ID', '检定仓编号', '仓类型ID'],
-    'arrival': ['到货批次号', '设备分类', '设备规格', '数量', '预计到货日期'],
+    'arrival': ['到货批次号', '设备分类', '设备规格', '数量', '预计到货日期', '是否已抽检', '抽检数量'],
     'demand': ['所属月份', '设备类型码大码', '申请数量', '设备码', '设备分类'],
     'spec': ['设备码', '设备分类', '接入方式', '自动检定时间', '设备码描述', '参数标识'],
     'qualified': ['设备码', '合格品库存', '未配送库存', '安全库存'],
-    'unqualified': ['到货批次号', '设备类型码', '设备分类', '可检库存'],
+    'unqualified': ['到货批次号', '设备类型码', '设备分类', '可检库存', '是否已抽检', '抽检数量'],
     'time_config': ['工作日日期', '开始时间', '结束时间'],
     'gap_config': ['线体编号', '调度时间间隔（秒）', '允许加班时长（小时）'],
     'non_demand_target': ['设备类型码大码', '目标设备类型码', '分配比例（%）'],
@@ -272,6 +276,8 @@ def _build_arrival(data) -> pd.DataFrame:
             '设备规格': r.get('equipCode'),
             '数量': r.get('arriveQty'),
             '预计到货日期': _parse_dt(r.get('arriveDate')),
+            '是否已抽检': r.get('sampleFlag'),      # 0否/1是（v0.0.6 新增，原值由 prepare 解析）
+            '抽检数量': r.get('sampleQty'),
         })
     return _frame('arrival', rows)
 
@@ -380,6 +386,8 @@ def _build_unqualified(data) -> pd.DataFrame:
             '设备类型码': r.get('equipCode'),
             '设备分类': _equip_cls_name(r.get('equipCls')),
             '可检库存': r.get('detectUQty'),
+            '是否已抽检': r.get('sampleFlag'),      # 0否/1是（v0.0.6 新增，原值由 prepare 解析）
+            '抽检数量': r.get('sampleQty'),
         })
     return _frame('unqualified', rows)
 

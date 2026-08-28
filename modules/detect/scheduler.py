@@ -1,8 +1,18 @@
 """
-检定排程 — 核心调度算法（8.17 版）
+检定排程 — 核心调度算法（8.25 版）
 ===================================
-从 8.17 脚本 `docs/算法脚本/检定排程/检定排程python代码_8.17.py` 迁移，
+从 8.25 脚本 `docs/算法脚本/检定排程/检定排程python代码_8.25.py` 迁移，
 **核心逻辑零修改**（仅补充日志，不改变任何计算）。
+
+8.25 变化（相对 8.17，本文件体现；甲方 20260825 新需求 + 接口 v0.0.6）：
+- 抽检流程：未抽检批次（是否已抽检=否 且 抽检数量>0）先安排抽检（schedule_sampling，
+  检定类型=2 到货后抽样检测），抽检完成后才做首检；同批次只抽检一次
+  （sampling_done_batches），多次调度共用抽检完成时间（batch_sample_end）；
+  抽检不产生合格品库存
+- get_next_start_minutes 的 earliest 处理简化（直接推进到 earliest 分钟，由后续循环
+  上取整/顺延）——保证抽检后首检精确到分钟衔接
+- schedule_summary / batch_alloc 聚合键新增 检定类型编码/检定类型名称（区分抽检/首检）
+- 出参新增 detectType（检定类型编码：02 抽样试验 / 03 首次检定）
 
 8.17 变化（相对 8.16，本文件体现）：
 - 新增 dev_code_to_detect_scheme_id 映射（设备码 → detectSchemeId，来源 spec.参数标识）
@@ -31,14 +41,15 @@
 - WARNING : 计算问题——批次耗尽仍欠缺口、批次无分类/无对应仓被跳过、未生成任何子任务
 - DEBUG   : 每个检定子任务的分配明细（仓、数量、起止时间）、可用仓数、终端仓过滤明细
 
-模块级全局变量由 prepare.process_data() 在执行前填充（20 个输入 + 2 个输出）：
+模块级全局变量由 prepare.process_data() 在执行前填充（21 个输入 + 2 个输出）：
     dev_code_to_cat / dev_code_to_cat_name / dev_code_to_access / dev_code_to_big_code /
-    dev_code_to_detect_scheme_id /
+    dev_code_to_detect_scheme_id / batch_sample_info /
     non_demand_target_config / big_code_target_proportions /
     dev_code_to_low_voltage_subtype / chambers / chamber_type_id_map /
     spec_time / line_name_map / time_map / gap_map / overtime_map / base_date /
     inventory / pending_batches / demand_by_month / months
-    chamber_time / schedule_details（由 run_scheduling() 内部填充）
+    chamber_time / schedule_details / sampling_done_batches / batch_sample_end
+    （由 run_scheduling() 内部填充/重置）
 
 其余已知阻断项（见 docs/导出数据/检定数据记录文档.md）：
 - schTime 污染 / 分类关键词 12·13·16·17 认不出 / arriveBatchList.detectEquipType 全空 —— 待算法负责人确认，不擅修
@@ -63,6 +74,7 @@ from .constants import (
     DETECT_TYPE_CODE_TO_NAME,
     DMD_PLAN_TYPE_CODE_TO_NAME,
     EQUIP_CATEG_CODE_TO_NAME,
+    SAMPLING_DETECT_TYPE_CODE,
 )
 
 logger = logging.getLogger(__name__)
@@ -91,9 +103,12 @@ inventory = None            # defaultdict(int)
 pending_batches = None      # deque()
 demand_by_month = None      # defaultdict(list)
 months = []
+batch_sample_info = {}      # batch_no -> {'sampled': bool, 'sample_qty': int}（8.25 抽检信息）
 
 chamber_time = {}
 schedule_details = []
+sampling_done_batches = set()  # 已安排过抽检的批次号（每个批次只抽检一次，8.25）
+batch_sample_end = {}          # batch_no -> 抽检完成分钟数；约束同批次首检不得早于抽检完成（8.25）
 
 MAX_DAY_SEARCH = 365 * 10  # 最大搜索天数，防止死循环
 # 最晚完工日期：排程时间配置中最后一天。
@@ -201,26 +216,127 @@ def get_next_start_minutes(prev_end_minutes, duration, line_id, earliest_start_m
 
         earliest_abs = base_date + timedelta(minutes=earliest_start_minutes)
         if start_abs < earliest_abs:
-            earliest_date = earliest_abs.date()
-            if is_workday(earliest_date):
-                sh_e, sm_e, eh_e, em_e = get_workday_times(earliest_date)
-                start_earliest = datetime(earliest_date.year, earliest_date.month, earliest_date.day, sh_e, sm_e, 0)
-                candidate_min = int((start_earliest - base_date).total_seconds() / 60)
-                continue
-            else:
-                next_day = find_next_workday(earliest_date)
-                sh_e, sm_e, eh_e, em_e = get_workday_times(next_day)
-                start_earliest = datetime(next_day.year, next_day.month, next_day.day, sh_e, sm_e, 0)
-                candidate_min = int((start_earliest - base_date).total_seconds() / 60)
-                continue
+            # 甲方20260825新需求：抽检完成后首检需精确到分钟衔接。
+            # 直接推进到 earliest 时刻：若 earliest 落在工作日工作时段之前
+            # （如到货日期 00:00），后续循环会自动上取整到当日工作开始时间；
+            # 若 earliest 为非工作日，则顺延到下一工作日。
+            candidate_min = int((earliest_abs - base_date).total_seconds() / 60)
+            continue
 
         return int((start_abs - base_date).total_seconds() / 60)
 
     raise OverflowError(f"时间计算超过 {MAX_DAY_SEARCH} 天仍未找到合适时段，请检查排程配置。")
 
 
+def schedule_sampling(batch_no, dev_code, sample_qty, month, is_priority, earliest_start=0):
+    """甲方新需求：对未抽检批次先安排抽检（到货后抽样检测，编码2）。
+    抽检不产生合格品库存，仅作为首检前的质量把关步骤。
+    返回抽检完成后的分钟数，作为后续首检的最早开始时间。"""
+    if sample_qty <= 0:
+        return earliest_start
+    dev_cat = dev_code_to_cat.get(dev_code)
+    if dev_cat is None:
+        logger.warning("批次 %s 设备码 %s 无设备分类，跳过抽检安排", batch_no, dev_code)
+        return earliest_start
+
+    available = []
+    for ch, info in chambers.items():
+        cap = info['capacity'].get(dev_cat)
+        if cap and cap > 0:
+            if dev_cat == 14 and chamber_type_id_map.get(ch, 0) == 5:
+                access = dev_code_to_access.get(dev_code, '')
+                if '经互感' not in access:
+                    continue
+            available.append((ch, cap))
+    if not available:
+        logger.warning("批次 %s 设备码 %s 无可用检定仓，跳过抽检安排", batch_no, dev_code)
+        return earliest_start
+    available.sort(key=lambda x: (chamber_time[x[0]], -chambers[x[0]]['dev_count'], -x[0][0]))
+
+    cat_name = dev_code_to_cat_name.get(dev_code, get_detect_equip_type_name(dev_cat))
+    equip_cls_code = get_equip_cls_code(cat_name)
+    equip_categ_code = get_equip_categ_code(cat_name)
+    detect_scheme_id = get_detect_scheme_id(dev_code)
+
+    remaining = sample_qty
+    sub_counter = 1
+    last_end_min = earliest_start
+    while remaining > 0:
+        available.sort(key=lambda x: (chamber_time[x[0]], -chambers[x[0]]['dev_count'], -x[0][0]))
+        ch, max_cap = available[0]
+        batch_qty = min(remaining, max_cap)
+        duration = spec_time[dev_cat]
+        line_id = ch[0]
+        try:
+            start_min = get_next_start_minutes(chamber_time[ch], duration, line_id, earliest_start)
+        except OverflowError:
+            logger.warning("批次 %s 设备码 %s 抽检剩余 %d 无法在 %s 前排程，跳过",
+                           batch_no, dev_code, remaining, MAX_WORK_DATE)
+            break
+        end_min = start_min + duration
+        start_time = base_date + timedelta(minutes=start_min)
+        end_time = base_date + timedelta(minutes=end_min)
+        internal_batch = f"{month}-{batch_no}-S-{sub_counter}"
+
+        chamber_type_name = chambers[ch]['type_name']
+        logger.debug("    抽检子任务 %s：仓 %s 抽检 %d 台，%s → %s",
+                     internal_batch, ch, batch_qty,
+                     start_time.strftime('%Y-%m-%d %H:%M:%S'),
+                     end_time.strftime('%Y-%m-%d %H:%M:%S'))
+
+        schedule_details.append({
+            '月份': month,
+            '检定线ID': ch[0],
+            '检定线名称': line_name_map.get(ch[0], ''),
+            '检定仓编号': ch[1],
+            '检定仓类型': chamber_type_name,
+            '检定仓类型编码': chamber_type_id_map.get(ch),
+            '检定仓类型名称': chamber_type_name,
+            '检定设备类型编码': dev_cat,
+            '检定设备类型名称': get_detect_equip_type_name(dev_cat),
+            '设备类型': get_detect_equip_type_name(dev_cat),
+            '设备分类编码': equip_cls_code,
+            '设备分类名称': get_equip_cls_name(equip_cls_code) if equip_cls_code else '',
+            '设备类别编码': equip_categ_code,
+            '设备类别名称': EQUIP_CATEG_CODE_TO_NAME.get(equip_categ_code, '') if equip_categ_code else '',
+            '设备码': dev_code,
+            '目标设备类型码': dev_code,
+            '到货批次号': batch_no,
+            '是否为需求优先': 1 if is_priority else 0,
+            '需求计划类型编码': DEFAULT_DMD_PLAN_TYPE_CODE,
+            '需求计划类型名称': DMD_PLAN_TYPE_CODE_TO_NAME.get(DEFAULT_DMD_PLAN_TYPE_CODE, ''),
+            '检定类型编码': SAMPLING_DETECT_TYPE_CODE,
+            '检定类型名称': DETECT_TYPE_CODE_TO_NAME.get(SAMPLING_DETECT_TYPE_CODE, '到货后抽样检测'),
+            'detectSchemeId': detect_scheme_id if detect_scheme_id is not None else '',
+            '内部批次号': internal_batch,
+            '每批数量': batch_qty,
+            '预计开始时间': start_time,
+            '预计完成时间': end_time,
+            '检定时长(天)': round(duration / 1440, 1),
+            '检定时长(分钟/批)': duration
+        })
+        chamber_time[ch] = end_min
+        last_end_min = end_min
+        remaining -= batch_qty
+        available[0] = (ch, max_cap)
+        sub_counter += 1
+    return last_end_min
+
+
 def schedule_batch(batch_no, dev_code, quantity, is_priority, month, earliest_start=0, target_dev_code=None):
     """把一批设备安排到检定仓，生成一个或多个子任务。"""
+    # 甲方新需求：批次未抽检则先安排抽检，抽检完成后再做首检（每个批次只抽检一次）
+    if batch_no not in sampling_done_batches:
+        binfo = batch_sample_info.get(batch_no)
+        sampling_done_batches.add(batch_no)
+        if binfo is not None and not binfo['sampled'] and binfo['sample_qty'] > 0:
+            sample_end = schedule_sampling(batch_no, dev_code, binfo['sample_qty'], month, is_priority, earliest_start)
+            if sample_end > earliest_start:
+                earliest_start = sample_end
+            batch_sample_end[batch_no] = sample_end
+    # 同批次可能被拆分为多次调度（多目标设备类型/跨月），抽检完成时间需对每次首检都生效
+    if batch_no in batch_sample_end and batch_sample_end[batch_no] > earliest_start:
+        earliest_start = batch_sample_end[batch_no]
     if quantity <= 0:
         return 0
     dev_cat = dev_code_to_cat.get(dev_code)
@@ -408,8 +524,13 @@ def run_scheduling():
     故须声明为 global（8.03 只做原地修改无需）。
     """
     global chamber_time, schedule_details, pending_batches
+    global sampling_done_batches, batch_sample_end
     chamber_time = {ch: 0 for ch in chambers.keys()}
     schedule_details = []
+    # 8.25 抽检状态重置（HTTP 长驻服务重入安全：8.25 脚本单次运行无此需要，这里与
+    # chamber_time/schedule_details 一同重置，单次运行语义与 8.25 完全一致）
+    sampling_done_batches = set()
+    batch_sample_end = {}
 
     logger.info("===== 主调度开始 =====")
     logger.info("月份列表：%s（共 %d 个月）", months, len(months))
@@ -642,7 +763,8 @@ def build_output_dataframes(df_arrival, df_unqualified):
 
     # 检定排程明细（汇总）
     df_schedule_summary = df_details.groupby(
-        ['月份', '检定线ID', '检定线名称', '检定设备类型编码', '检定设备类型名称', '设备码', '到货批次号', '是否为需求优先']
+        ['月份', '检定线ID', '检定线名称', '检定设备类型编码', '检定设备类型名称',
+         '设备码', '到货批次号', '是否为需求优先', '检定类型编码', '检定类型名称']
     ).agg(
         总检定数量=('每批数量', 'sum'),
         批次数=('内部批次号', 'nunique')
@@ -661,7 +783,7 @@ def build_output_dataframes(df_arrival, df_unqualified):
 
     # 到货批次分配明细
     df_batch_alloc = df_details.groupby(
-        ['月份', '到货批次号', '检定设备类型编码', '检定设备类型名称', '设备码', '是否为需求优先']
+        ['月份', '到货批次号', '检定设备类型编码', '检定设备类型名称', '设备码', '是否为需求优先', '检定类型编码', '检定类型名称']
     ).agg(
         分配数量=('每批数量', 'sum')
     ).reset_index()

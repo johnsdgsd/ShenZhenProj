@@ -128,6 +128,8 @@ def _to_api_row(row: pd.Series) -> dict:
         # 是否为需求优先：8.16 起算法输出 1/0（VW_YES_NO_FLAG），直读映射
         'demandFlag': DEMAND_FLAG_YES if demand_flag == '1' else DEMAND_FLAG_NO,
         'weekDayStartAndEnd': '',               # 待企业确认字段口径
+        # 检定类别（VW_DETECT_TYPE）：8.25 起出参新增（02 抽样试验 / 03 首次检定）
+        'detectType': _fmt_code(_row_get(row, '检定类型编码')),
     }
 
 
@@ -139,7 +141,8 @@ def write_json(output_dfs: Dict[str, pd.DataFrame]) -> dict:
 
     当前对接口要求但算法不生产的字段（equipDesc / weekDayStartAndEnd）
     先返回空字符串，待企业确认字段口径后再补齐；detectSchemeId 自 8.17 起
-    由 spec.参数标识 生产（查不到返空串）。
+    由 spec.参数标识 生产（查不到返空串）；detectType（检定类别）自 8.25 起
+    出参（02 抽样试验 / 03 首次检定）。
     """
     detail_df = output_dfs.get('details_sorted')
     rows = []

@@ -153,6 +153,8 @@ DMD_PLAN_TYPE_CODE_TO_NAME: Dict[int, str] = {1: '月计划', 2: '紧急计划'}
 
 # 默认检定类型（8.16 L101-103）：首次检定
 DEFAULT_DETECT_TYPE_CODE = 3
+# 抽检检定类型：到货后抽样检测（编码 2，8.25 新增）
+SAMPLING_DETECT_TYPE_CODE = 2
 # 默认需求计划类型：月计划
 DEFAULT_DMD_PLAN_TYPE_CODE = 1
 

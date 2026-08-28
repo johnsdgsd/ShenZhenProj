@@ -22,12 +22,12 @@ from server import create_app  # noqa: E402
 app = create_app()
 INTERFACE_PATH = '/restful/busiInterface/ipsService/detectPlanScheduling'
 
-# 接口文档出参 detectPlanSchedulingchList 的字段清单（接口说明v2.0 §1.3，16 字段）
+# 接口文档出参 detectPlanSchedulingchList 的字段清单（接口说明v0.0.6 §出参，17 字段）
 EXPECTED_OUTPUT_FIELDS = [
     'sysNo', 'sysName', 'deviceType', 'deviceNo', 'arriveBatchNo',
     'equipCateg', 'equipCls', 'equipCode', 'equipDesc', 'aimEquipCode',
     'detectSchemeId', 'projectedStartTime', 'projectedEndTime', 'detectPlanQty',
-    'demandFlag', 'weekDayStartAndEnd',
+    'demandFlag', 'weekDayStartAndEnd', 'detectType',
 ]
 
 
@@ -56,7 +56,8 @@ def build_payload():
             {"arriveBatchNo": "B0001", "equipCateg": "C01",
              "equipCls": "智能量测终端", "equipCode": "EQ-TERM-1",
              "equipDesc": "智能量测终端", "arriveQty": 100,
-             "arriveDate": "2026-03-02 00:00:00", "detectEquipType": "14"},
+             "arriveDate": "2026-03-02 00:00:00", "detectEquipType": "14",
+             "sampleFlag": "1", "sampleQty": 0},   # v0.0.6：已抽检，不触发抽样
         ],
         "detectSchList": [
             {"equipCode": "EQ-TERM-1", "detectType": "01",
@@ -110,6 +111,8 @@ def test_normal():
         assert row['aimEquipCode'] == row['equipCode'], f"aimEquipCode 应等于 equipCode: {row}"
         # 8.17：detectSchemeId 来自 detectSchList.detectSchemeId（spec.参数标识）
         assert row['detectSchemeId'] == 1001, f"detectSchemeId 应为入参方案标识 1001: {row}"
+        # 8.25：detectType 出参（已抽检批次 → 03 首次检定）
+        assert row['detectType'] == '03', f"detectType 应为首次检定码 03: {row}"
 
     total = sum(r['detectPlanQty'] for r in rows)
     assert total == 100, f"总排程量 {total} 应为 100"
@@ -205,6 +208,81 @@ def test_detect_scheme_id_big_code_fallback():
     print("[detectSchemeId] 直查 / 大小码回退 / 无映射返回 None - OK")
 
 
+def test_sampling_flow():
+    """8.25 抽检流程：未抽检批次先抽检（detectType=02）再做首检（03），首检不早于抽检完成。"""
+    payload = {
+        "deviceParaList": [
+            {"sysNo": "2001", "sysName": "单相线", "deviceType": "01",
+             "deviceNo": "DGNx001", "deviceName": "仓1",
+             "detectEquipType": "01", "posNum": 48},
+        ],
+        "dmdPlanDetList": [],
+        "arriveBatchList": [
+            {"arriveBatchNo": "B-SMP-1", "equipCateg": "C01", "equipCls": "01",
+             "equipCode": "SMALL-1", "equipDesc": "单相表", "arriveQty": 10,
+             "arriveDate": "2026-08-06 00:00:00", "detectEquipType": "01",
+             "sampleFlag": "0", "sampleQty": 3},   # 未抽检 → 先抽检 3 台
+        ],
+        "detectSchList": [],
+        "qualifiedStockList": [], "unqualifiedStockList": [],
+        "scheduleTimeList": [
+            {"workDay": "2026-08-06", "startTime": "09:00", "endTime": "17:00"},
+        ],
+        "scheduleConfigList": [
+            {"sysNo": "2001", "sysName": "单相线", "timeInterval": 300, "overtime": 0},
+        ],
+    }
+    client = app.test_client()
+    resp = client.post(INTERFACE_PATH, json=payload)
+    assert resp.status_code == 200
+    rows = resp.get_json()['detectPlanSchedulingchList']
+    assert rows, "无排程明细"
+    types = {r['detectType'] for r in rows}
+    assert '02' in types, f"应含抽检明细（detectType=02）: {types}"
+    assert '03' in types, f"应含首检明细（detectType=03）: {types}"
+    sample_rows = sorted([r for r in rows if r['detectType'] == '02'],
+                         key=lambda r: r['projectedEndTime'])
+    first_rows = [r for r in rows if r['detectType'] == '03']
+    assert sum(r['detectPlanQty'] for r in sample_rows) == 3, "抽检数量应为 3 台"
+    sample_end = sample_rows[-1]['projectedEndTime']
+    for r in first_rows:
+        assert r['projectedStartTime'] >= sample_end, \
+            f"首检 {r['projectedStartTime']} 不应早于抽检完成 {sample_end}"
+    print(f"[抽检流程] 未抽检批次先抽检 3 台（02）后首检 10 台（03），首检不早于抽检完成 - OK")
+
+
+def test_sampling_default_sampled():
+    """8.25 抽检默认值：缺 sampleFlag 视为已抽检，不产生 detectType=02 明细。"""
+    payload = {
+        "deviceParaList": [
+            {"sysNo": "2001", "sysName": "单相线", "deviceType": "01",
+             "deviceNo": "DGNx001", "deviceName": "仓1",
+             "detectEquipType": "01", "posNum": 48},
+        ],
+        "dmdPlanDetList": [],
+        "arriveBatchList": [
+            {"arriveBatchNo": "B-NOSMP-1", "equipCateg": "C01", "equipCls": "01",
+             "equipCode": "SMALL-2", "equipDesc": "单相表", "arriveQty": 5,
+             "arriveDate": "2026-08-06 00:00:00", "detectEquipType": "01"},
+            # 无 sampleFlag/sampleQty（旧报文形态）→ 默认已抽检
+        ],
+        "detectSchList": [],
+        "qualifiedStockList": [], "unqualifiedStockList": [],
+        "scheduleTimeList": [
+            {"workDay": "2026-08-06", "startTime": "09:00", "endTime": "17:00"},
+        ],
+        "scheduleConfigList": [
+            {"sysNo": "2001", "sysName": "单相线", "timeInterval": 300, "overtime": 0},
+        ],
+    }
+    client = app.test_client()
+    resp = client.post(INTERFACE_PATH, json=payload)
+    rows = resp.get_json()['detectPlanSchedulingchList']
+    assert rows, "无排程明细"
+    assert all(r['detectType'] == '03' for r in rows), "缺 sampleFlag 应默认已抽检，不出 02 明细"
+    print("[抽检默认值] 缺 sampleFlag 视为已抽检，全部为首次检定（03）- OK")
+
+
 def test_empty_body():
     """空请求体：返回 resultFlag=0 及错误信息。"""
     client = app.test_client()
@@ -241,6 +319,8 @@ if __name__ == '__main__':
     test_normal()
     test_equipcls_code_spec_category()
     test_detect_scheme_id_big_code_fallback()
+    test_sampling_flow()
+    test_sampling_default_sampled()
     test_empty_body()
     test_missing_required_sets()
     test_invalid_json()
