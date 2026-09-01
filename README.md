@@ -36,7 +36,14 @@
 │   │   ├── scheduler.py        # 核心算法（核心逻辑零修改）+ run_scheduling() + build_output_dataframes()
 │   │   ├── pipeline.py         # run_pipeline()（三阶段流程）
 │   │   └── writer.py           # write_excel（7 DataFrame → Excel）/ write_json（→ 出参 JSON）
-│   ├── arrival/                # 到货排程模块（骨架，MODULE=None，预留）
+│   ├── arrival/                # 到货排程模块（8.24 核心，已接入 HTTP，仅 JSON 无 Excel 兑底）
+│   │   ├── __init__.py         # MODULE 注册声明（arrivePlanScheduling）
+│   │   ├── constants.py        # 8 个入参集合 / 5 个出参集合名
+│   │   ├── reader.py           # read_json（8 集合校验 → DataFrame）
+│   │   ├── prepare.py          # 字段/数量/年月/日期归一化（必填校验）
+│   │   ├── scheduler.py        # 8.24 业务计算（净需求/合同分配/月份拆分/日期频次/告警）
+│   │   ├── pipeline.py         # 流水线 + 里程碑日志（含耗时）
+│   │   └── writer.py           # V0.0.6 出参映射（只映射不计算）
 │   └── distribution/           # 配送模块（骨架，MODULE=None，预留）
 ├── server/                     # HTTP 服务包
 │   ├── __init__.py             # create_app() 应用工厂 + run_server()（单线程）
@@ -95,14 +102,15 @@ SERVER_HOST=10.x.x.x SERVER_PORT=8080 python main.py serve
 
 向后兼容：`python service.py`（等价 `python main.py`）。
 
-**接口路由（唯一接口）：**
+**接口路由（两个接口）：**
 
 ```
-POST http://<host>:<port>/restful/busiInterface/ipsService/detectPlanScheduling
+POST http://<host>:<port>/restful/busiInterface/ipsService/detectPlanScheduling   # 检定排程
+POST http://<host>:<port>/restful/busiInterface/ipsService/arrivePlanScheduling   # 到货排程
 Content-Type: application/json
 ```
 
-- 方法：**POST**；入参 9 个 JSON 集合 / 出参定义见「五、接口契约」
+- 方法：**POST**；检定入参 9 个 JSON 集合、到货入参 8 个 JSON 集合（出参定义见「五、接口契约」与 `docs/接口文档/接口文档v0.0.6 .md` §2）
 - 本机测试：`http://localhost:5000/restful/busiInterface/ipsService/detectPlanScheduling`
 - 部署后把 `<host>` 换成企业指定 IP、`<port>` 换成映射端口
 

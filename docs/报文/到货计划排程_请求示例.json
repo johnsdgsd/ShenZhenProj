@@ -1,0 +1,46 @@
+{
+  "dmdPlanDetList": [
+    {
+      "dmdPlanDetId": 1,
+      "dmdPlanNo": "DMD-001",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "08",
+      "appOrg": "ORG-001",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "equipCode": "EQ-001",
+      "equipDesc": "单相智能电能表",
+      "pEquipCode": "EQ-BIG-001",
+      "sumQty": 100,
+      "materialNoList": [
+        {"materialNo": "MAT-001", "materialDesc": "单相智能电能表物资"}
+      ]
+    }
+  ],
+  "qualifiedStockList": [
+    {"equipCode": "EQ-001", "pEquipCode": "EQ-BIG-001", "lowerLimitQty": 5, "qualifiedQty": 30, "distLockQty": 5}
+  ],
+  "unqualifiedStockList": [
+    {"equipCode": "EQ-001", "arriveBatchNo": "ARR-001", "unqualifiedQty": 10}
+  ],
+  "orderContractDetList": [
+    {"contractDetId": "101", "contractId": "10", "equipCateg": "01", "equipCls": "01", "materialNo": "MAT-001", "purchaseQty": 100, "arriveQty": 20, "supplierNo": "SUP-001", "supplierName": "测试供应商"}
+  ],
+  "supplyNoticeDetList": [
+    {"supplyNoticeDetId": "201", "supplyNoticeId": "20", "supplierNo": "SUP-001", "supplierName": "测试供应商", "contractDetId": "101", "materialNo": "MAT-001", "equipCode": "EQ-001", "supplyQty": 15, "inWhQty": 5, "reqArriveDate": "2026-08-03"}
+  ],
+  "supplierConfigList": [
+    {"supplierNo": "SUP-001", "supplierName": "测试供应商", "stockCycle": 0, "transitTime": 0, "overallScore": 98.5, "weekMaxCount": 2, "monthMaxCount": 4}
+  ],
+  "whAreaConfigList": [
+    {"whAreaId": "301", "whAreaName": "计量管理所待检仓", "whAreaType": "01", "whAreaCap": 1000, "inStockQty": 100, "arriveBatchQty": 3}
+  ],
+  "scheduleTimeList": [
+    {"workDay": "2026-08-03", "startTime": "09:00", "endTime": "17:00"},
+    {"workDay": "2026-08-04", "startTime": "09:00", "endTime": "17:00"},
+    {"workDay": "2026-08-05", "startTime": "09:00", "endTime": "17:00"},
+    {"workDay": "2026-08-06", "startTime": "09:00", "endTime": "17:00"},
+    {"workDay": "2026-08-07", "startTime": "09:00", "endTime": "17:00"}
+  ]
+}

@@ -34,7 +34,15 @@
 │   │   ├── scheduler.py       # 核心算法（核心逻辑零修改，含详细执行日志）+ run_scheduling() + build_output_dataframes()
 │   │   ├── pipeline.py        # run_pipeline()（三阶段流程 + 计时日志）
 │   │   └── writer.py          # write_excel（7 DataFrame → Excel）/ write_json（→ detectPlanSchedulingchList JSON）
-│   ├── arrival/               # 到货排程模块（骨架，MODULE=None，预留命名空间，未实现）
+│   ├── arrival/               # 到货排程模块（8.24 核心，已接入 HTTP，仅 JSON 无 Excel 兑底）
+│   │   ├── __init__.py        # MODULE 注册声明（arrivePlanScheduling）
+│   │   ├── constants.py       # 8 个入参集合 / 5 个出参集合名
+│   │   ├── models.py          # PreparedArrivalData / ArrivalResult 业务结构
+│   │   ├── reader.py          # read_json（8 集合校验 → DataFrame）
+│   │   ├── prepare.py         # 字段/数量/年月/日期归一化（必填校验）
+│   │   ├── scheduler.py       # 8.24 业务计算（净需求/合同分配/月份拆分/日期频次/告警）
+│   │   ├── pipeline.py        # 流水线 + 里程碑日志（含耗时）
+│   │   └── writer.py          # V0.0.6 出参映射（只映射不计算）
 │   └── distribution/          # 配送模块（骨架，MODULE=None，预留命名空间，未实现）
 ├── server/                    # HTTP 服务包
 │   ├── __init__.py            # create_app() 应用工厂 + run_server() 启动（threaded=False）
@@ -56,18 +64,26 @@
 
 ```
 生产环境（HTTP）:
-  平台 ──POST 9个JSON集合──> server/blueprints（通用工厂按 modules 注册中心生成蓝图）
-       ──> modules.detect.reader.read_json ──> 12个DataFrame
-       ──> modules.detect.pipeline.run_pipeline()（prepare.process_data → scheduler.run_scheduling → build_output_dataframes）
-       ──> modules.detect.writer.write_json ──> JSON出参 ──> 平台
+  检定 detectPlanScheduling:
+    平台 ──POST 9个JSON集合──> server/blueprints（通用工厂按 modules 注册中心生成蓝图）
+         ──> modules.detect.reader.read_json ──> 12个DataFrame
+         ──> modules.detect.pipeline.run_pipeline()（prepare.process_data → scheduler.run_scheduling → build_output_dataframes）
+         ──> modules.detect.writer.write_json ──> JSON出参 ──> 平台
+  到货 arrivePlanScheduling:
+    平台 ──POST 8个JSON集合──> 通用工厂蓝图
+         ──> modules.arrival.reader.read_json ──> 8个DataFrame
+         ──> modules.arrival.pipeline.run_pipeline()（prepare.process_data → scheduler.run_scheduling → ArrivalResult）
+         ──> modules.arrival.writer.write_json ──> 5个出参集合 ──> 平台
 
-离线兑底（CLI）:
+离线兑底（CLI，仅检定）:
   python cli.py <输入Excel路径> [-o 输出路径] [--module detect]
        ──> modules.detect.reader.read_excel ──> 12个DataFrame ──> 同一 run_pipeline()
        ──> modules.detect.writer.write_excel ──> 输出 Excel
 ```
 
-CLI 与 HTTP 共用 `modules.detect.pipeline.run_pipeline()`，行为完全一致。
+检定 CLI 与 HTTP 共用 `modules.detect.pipeline.run_pipeline()`，行为完全一致。
+到货模块仅 HTTP（无 Excel 兑底入口）；Excel 数据经 `tests/arrival_excel_to_json.py`
+转成 8 集合 JSON 后走 HTTP 验证。
 
 ## 关键设计
 
@@ -115,3 +131,4 @@ python tests/test_interface.py
 - 出参缺口 2 字段的口径（`equipDesc` / `weekDayStartAndEnd`）
 - `detectSchList` 若某设备码缺失 `schTime` 的兜底值
 - 已知项（`docs/导出数据/检定数据记录文档.md` §2-C）：VW_DETECT_EQUIP_TYPE 码 12/13/16/17 转出的 负荷管理终端/配变监测计量终端 不在 8.16 分类关键词集内，对应仓会被静默跳过——待算法负责人确认是否补关键词
+- **到货模块待平台确认**（`docs/到货模块8.24验证报告.md`）：① `whAreaId` Excel 无此列，转换器暂用行序号占位，生产报文应由平台提供真实值；② `arriveAllocationList` 无 `materialNo`，算法按物资编码计算后映射为关联设备类型码大码出参，口径待平台确认；③ 8.24 脚本的「每日批次超限告警」「已供货通知排除日期」两张 sheet 无接口出参集合，是否暴露及字段名待确认；④ **验收基准输入缺失**：参考样张 `到货计划排程结果8.24.xlsx`（68 计划/8 告警）由仓库中没有的 `入参-20260821(1).xlsx` 生成，需向算法方索取该输入或改以当前输入+8.24 脚本结果（75/17）为验收基准

@@ -1,0 +1,73 @@
+{
+  "resultFlag": "1",
+  "errorInfo": "",
+  "arrivePlanSchedulingchList": [
+    {
+      "arrivePlanDate": "2026-08-04 00:00:00",
+      "planYm": "2026-08",
+      "planWeek": "2026-W32",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "materialNo": "MAT-001",
+      "equipCode": "EQ-BIG-001",
+      "equipDesc": "单相智能电能表",
+      "supplierNo": "SUP-001",
+      "contractId": "10",
+      "contractDetId": "101",
+      "planQty": 30,
+      "stockCycle": 0,
+      "transitTime": 0
+    },
+    {
+      "arrivePlanDate": "2026-08-06 00:00:00",
+      "planYm": "2026-08",
+      "planWeek": "2026-W32",
+      "equipCateg": "01",
+      "equipCls": "01",
+      "materialNo": "MAT-001",
+      "equipCode": "EQ-BIG-001",
+      "equipDesc": "单相智能电能表",
+      "supplierNo": "SUP-001",
+      "contractId": "10",
+      "contractDetId": "101",
+      "planQty": 30,
+      "stockCycle": 0,
+      "transitTime": 0
+    }
+  ],
+  "capAlarmList": [],
+  "contractAllocationList": [
+    {
+      "materialNo": "MAT-001",
+      "contractId": "10",
+      "contractDetId": "101",
+      "supplierNo": "SUP-001",
+      "supplierName": "测试供应商",
+      "purchaseQty": 100,
+      "arriveQty": 20,
+      "executionProgress": 20.0,
+      "contractRatio": 100.0,
+      "sameMaterialTotalProgress": 20.0,
+      "allocationQty": 60,
+      "afterAllocationProgress": 80.0,
+      "remainingContractQty": 20
+    }
+  ],
+  "contractShortageAlarmList": [],
+  "arriveAllocationList": [
+    {
+      "equipCode": "EQ-BIG-001",
+      "planYm": "2026-08",
+      "dmdPlanQty": 100,
+      "supplyQty": 15,
+      "inWhQty": 5,
+      "netSupplyQty": 10,
+      "unqualifiedQty": 10,
+      "lowerLimitQty": 5,
+      "qualifiedQty": 30,
+      "distLockQty": 5,
+      "netQualifiedQty": 20,
+      "netDmdPlanQty": 60
+    }
+  ]
+}

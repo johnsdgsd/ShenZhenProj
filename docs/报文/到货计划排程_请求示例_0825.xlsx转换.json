@@ -1,0 +1,2125 @@
+{
+  "dmdPlanDetList": [
+    {
+      "dmdPlanDetId": 1,
+      "dmdPlanNo": "2012603211000497",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010348",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1788,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 2,
+      "dmdPlanNo": "2012603211000497",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010348",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100010900",
+      "equipDesc": "单相智能电能表_小1",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1000,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 3,
+      "dmdPlanNo": "2012603211000498",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010349",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2780,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 4,
+      "dmdPlanNo": "2012603211000499",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010350",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2102,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 5,
+      "dmdPlanNo": "2012603211000500",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010351",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2120,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 6,
+      "dmdPlanNo": "2012603211000501",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010352",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2250,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 7,
+      "dmdPlanNo": "2012603211000502",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010353",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2380,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 8,
+      "dmdPlanNo": "2012603211000503",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010354",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2320,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 9,
+      "dmdPlanNo": "2012603211000504",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010355",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2880,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 10,
+      "dmdPlanNo": "2012603211000505",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010356",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2590,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 11,
+      "dmdPlanNo": "2012603211000506",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010357",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3140,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 12,
+      "dmdPlanNo": "2012603211000507",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010358",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2190,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 13,
+      "dmdPlanNo": "2012603211000508",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010359",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3420,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 14,
+      "dmdPlanNo": "2012603211000509",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010360",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 4330,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 15,
+      "dmdPlanNo": "2012603211000510",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010361",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2890,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 16,
+      "dmdPlanNo": "2012603211000511",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010362",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3650,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 17,
+      "dmdPlanNo": "2012603211000512",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010363",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3170,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 18,
+      "dmdPlanNo": "2012603211000513",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010364",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 3240,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 19,
+      "dmdPlanNo": "2012603211000514",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010365",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 2760,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 20,
+      "dmdPlanNo": "2012604161000494",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "6",
+      "equipCode": "0625121820350001202508180001",
+      "equipDesc": "深圳_10kv电流互感器_0416_40只",
+      "pEquipCode": "0625121820350001202508180001",
+      "sumQty": 1500,
+      "materialNoList": [
+        {
+          "materialNo": "0625121820350001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 21,
+      "dmdPlanNo": "2012604231000500",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "7",
+      "equipCode": "072025121112230010000001",
+      "equipDesc": "深圳_10kv电压互感器_0423_2只_50Hz",
+      "pEquipCode": "072025121112230010000001",
+      "sumQty": 800,
+      "materialNoList": [
+        {
+          "materialNo": "07202512111223001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 22,
+      "dmdPlanNo": "2012512221000385",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010349",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 1500,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 23,
+      "dmdPlanNo": "2012512171000376",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010358",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 1440,
+      "materialNoList": [
+        {
+          "materialNo": "0225121710170013",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 24,
+      "dmdPlanNo": "2012601271000422",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010358",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 1560,
+      "materialNoList": [
+        {
+          "materialNo": "0225121710170013",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 25,
+      "dmdPlanNo": "2012512261000398",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010348",
+      "equipCateg": "9",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 1600,
+      "materialNoList": [
+        {
+          "materialNo": "082510101226345",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 26,
+      "dmdPlanNo": "2012604171000496",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010349",
+      "equipCateg": "9",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 900,
+      "materialNoList": [
+        {
+          "materialNo": "082510101226345",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 27,
+      "dmdPlanNo": "2012603271000468",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010349",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 240,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 28,
+      "dmdPlanNo": "2012603271000466",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010349",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "02260203094600010001",
+      "equipDesc": "三相互感电能表_0203",
+      "pEquipCode": "02260203094600010001",
+      "sumQty": 6600,
+      "materialNoList": [
+        {
+          "materialNo": "0226020309460001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 29,
+      "dmdPlanNo": "2012603241000432",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010349",
+      "equipCateg": "2",
+      "equipCls": "7",
+      "equipCode": "072025121112230010000001",
+      "equipDesc": "深圳_10KV电压互感器",
+      "pEquipCode": "072025121112230010000001",
+      "sumQty": 500,
+      "materialNoList": [
+        {
+          "materialNo": "07202512111223001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 30,
+      "dmdPlanNo": "2012603301000472",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1966,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 31,
+      "dmdPlanNo": "2012603301000471",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010349",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1440,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 32,
+      "dmdPlanNo": "2012512111000366",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "7",
+      "equipCode": "072025121112230010000001",
+      "equipDesc": "深圳_10KV电压互感器",
+      "pEquipCode": "072025121112230010000001",
+      "sumQty": 1000,
+      "materialNoList": [
+        {
+          "materialNo": "07202512111223001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 33,
+      "dmdPlanNo": "2012602011000367",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "6",
+      "equipCode": "0625121820350001202508180001",
+      "equipDesc": "深圳_10kv电流互感器",
+      "pEquipCode": "0625121820350001202508180001",
+      "sumQty": 2000,
+      "materialNoList": [
+        {
+          "materialNo": "0625121820350001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 34,
+      "dmdPlanNo": "2012602011000368",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010349",
+      "equipCateg": "2",
+      "equipCls": "6",
+      "equipCode": "0625121820350001202508180001",
+      "equipDesc": "深圳_10kv电流互感器",
+      "pEquipCode": "0625121820350001202508180001",
+      "sumQty": 1500,
+      "materialNoList": [
+        {
+          "materialNo": "0625121820350001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 35,
+      "dmdPlanNo": "2012602021000369",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 2500,
+      "materialNoList": [
+        {
+          "materialNo": "0225121710170013",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 36,
+      "dmdPlanNo": "2012602021000340",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010349",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "equipCode": "07251217161200010002329312",
+      "equipDesc": "深圳_低压电流互感器",
+      "pEquipCode": "07251217161200010002329312",
+      "sumQty": 1450,
+      "materialNoList": [
+        {
+          "materialNo": "0225121710170013",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 37,
+      "dmdPlanNo": "2012602031000341",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "9",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 1300,
+      "materialNoList": [
+        {
+          "materialNo": "082510101226345",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 38,
+      "dmdPlanNo": "2012602031000342",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010349",
+      "equipCateg": "9",
+      "equipCls": "19",
+      "equipCode": "082512251013544",
+      "equipDesc": "深圳-智能融合终端",
+      "pEquipCode": "082512251013544",
+      "sumQty": 750,
+      "materialNoList": [
+        {
+          "materialNo": "082510101226345",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 39,
+      "dmdPlanNo": "2012602041000343",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010350",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1630,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 40,
+      "dmdPlanNo": "2012602041000344",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010351",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1694,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 41,
+      "dmdPlanNo": "2012602041000345",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010352",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1800,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 42,
+      "dmdPlanNo": "2012602041000346",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010353",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1750,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 43,
+      "dmdPlanNo": "2012602041000347",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010354",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1550,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 44,
+      "dmdPlanNo": "2012602041000348",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010355",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1780,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 45,
+      "dmdPlanNo": "2012602041000349",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010356",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1670,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 46,
+      "dmdPlanNo": "2012602041000350",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010357",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1525,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 47,
+      "dmdPlanNo": "2012602041000351",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010358",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1725,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 48,
+      "dmdPlanNo": "2012602041000352",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010359",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1880,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 49,
+      "dmdPlanNo": "2012602041000353",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010360",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1560,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 50,
+      "dmdPlanNo": "2012602041000354",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010361",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1420,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 51,
+      "dmdPlanNo": "2012602041000355",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010362",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1700,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 52,
+      "dmdPlanNo": "2012602041000356",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010363",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1600,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 53,
+      "dmdPlanNo": "2012602041000357",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010364",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1500,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 54,
+      "dmdPlanNo": "2012602041000358",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010365",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "equipCode": "0126012000010001100020900",
+      "equipDesc": "单相智能电能表_小2",
+      "pEquipCode": "0126012000010001",
+      "sumQty": 1810,
+      "materialNoList": [
+        {
+          "materialNo": "012601200001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 55,
+      "dmdPlanNo": "2012602041000359",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010350",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 270,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 56,
+      "dmdPlanNo": "2012602041000360",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010351",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 350,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 57,
+      "dmdPlanNo": "2012602041000361",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010352",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 380,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 58,
+      "dmdPlanNo": "2012602041000362",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010353",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 420,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 59,
+      "dmdPlanNo": "2012602041000363",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010354",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 275,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 60,
+      "dmdPlanNo": "2012602041000364",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010355",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 325,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 61,
+      "dmdPlanNo": "2012602041000365",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010356",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 370,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 62,
+      "dmdPlanNo": "2012602041000366",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010357",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 220,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 63,
+      "dmdPlanNo": "2012602041000367",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010358",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 330,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 64,
+      "dmdPlanNo": "2012602041000368",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010359",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 267,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 65,
+      "dmdPlanNo": "2012602041000369",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010360",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 253,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 66,
+      "dmdPlanNo": "2012602041000370",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010361",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 372,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 67,
+      "dmdPlanNo": "2012602041000371",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010362",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 458,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 68,
+      "dmdPlanNo": "2012602041000372",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010363",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 432,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 69,
+      "dmdPlanNo": "2012602041000373",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010364",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 238,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 70,
+      "dmdPlanNo": "2012602041000374",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010365",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "equipCode": "0225122202120001",
+      "equipDesc": "三相直接",
+      "pEquipCode": "0225122202120001",
+      "sumQty": 260,
+      "materialNoList": [
+        {
+          "materialNo": "0225122202120001",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 71,
+      "dmdPlanNo": "2012602041000375",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "21",
+      "equipCode": "202025121112230020900",
+      "equipDesc": "20kV电压互感器",
+      "pEquipCode": "202025121112230020900",
+      "sumQty": 50,
+      "materialNoList": [
+        {
+          "materialNo": "20202512111223002",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 72,
+      "dmdPlanNo": "2012602041000375",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "20",
+      "equipCode": "212025121112230030900",
+      "equipDesc": "20kV电流互感器",
+      "pEquipCode": "212025121112230030900",
+      "sumQty": 45,
+      "materialNoList": [
+        {
+          "materialNo": "21202512111223003",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 73,
+      "dmdPlanNo": "2012602041000376",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "equipCode": "02251217101700140900",
+      "equipDesc": "大变比低压电流互感器",
+      "pEquipCode": "02251217101700140900",
+      "sumQty": 60,
+      "materialNoList": [
+        {
+          "materialNo": "0225121710170014",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 74,
+      "dmdPlanNo": "2012602041000377",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "03",
+      "appOrg": "810000000001010348",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "equipCode": "02251217101700150900",
+      "equipDesc": "DBI低压电流互感器",
+      "pEquipCode": "02251217101700150900",
+      "sumQty": 70,
+      "materialNoList": [
+        {
+          "materialNo": "0225121710170015",
+          "materialDesc": ""
+        }
+      ]
+    },
+    {
+      "dmdPlanDetId": 75,
+      "dmdPlanNo": "2012602041000378",
+      "planType": "01",
+      "planYear": "2026",
+      "planMonth": "04",
+      "appOrg": "810000000001010348",
+      "equipCateg": "9",
+      "equipCls": "19",
+      "equipCode": "0825101012263460900",
+      "equipDesc": "智能融合终端",
+      "pEquipCode": "0825101012263460900",
+      "sumQty": 100,
+      "materialNoList": [
+        {
+          "materialNo": "082510101226346",
+          "materialDesc": ""
+        }
+      ]
+    }
+  ],
+  "qualifiedStockList": [
+    {
+      "equipCode": "0126012000010001100020900",
+      "pEquipCode": "0126012000010001",
+      "lowerLimitQty": 50000,
+      "qualifiedQty": 2500,
+      "distLockQty": 700
+    },
+    {
+      "equipCode": "0126012000010001100010900",
+      "pEquipCode": "0126012000010001",
+      "lowerLimitQty": 5000,
+      "qualifiedQty": 2500,
+      "distLockQty": 600
+    },
+    {
+      "equipCode": "0225122202120001",
+      "pEquipCode": "0225122202120001",
+      "lowerLimitQty": 1000,
+      "qualifiedQty": 2000,
+      "distLockQty": 1000
+    },
+    {
+      "equipCode": "02260203094600010001",
+      "pEquipCode": "02260203094600010001",
+      "lowerLimitQty": 1000,
+      "qualifiedQty": 3000,
+      "distLockQty": 1000
+    },
+    {
+      "equipCode": "07251217161200010002329312",
+      "pEquipCode": "07251217161200010002329312",
+      "lowerLimitQty": 2000,
+      "qualifiedQty": 3700,
+      "distLockQty": 1000
+    },
+    {
+      "equipCode": "0625121820350001202508180001",
+      "pEquipCode": "0625121820350001202508180001",
+      "lowerLimitQty": 1500,
+      "qualifiedQty": 2200,
+      "distLockQty": 500
+    },
+    {
+      "equipCode": "072025121112230010000001",
+      "pEquipCode": "072025121112230010000001",
+      "lowerLimitQty": 1500,
+      "qualifiedQty": 2300,
+      "distLockQty": 700
+    },
+    {
+      "equipCode": "082512251013544",
+      "pEquipCode": "082512251013544",
+      "lowerLimitQty": 2000,
+      "qualifiedQty": 2400,
+      "distLockQty": 550
+    }
+  ],
+  "unqualifiedStockList": [
+    {
+      "equipCode": "0126012000010001",
+      "arriveBatchNo": "2012602261000092",
+      "unqualifiedQty": 5000
+    },
+    {
+      "equipCode": "0225122202120001",
+      "arriveBatchNo": "2012602261000093",
+      "unqualifiedQty": 500
+    },
+    {
+      "equipCode": "02260203094600010001",
+      "arriveBatchNo": "2012602261000094",
+      "unqualifiedQty": 1000
+    },
+    {
+      "equipCode": "07251217161200010002329312",
+      "arriveBatchNo": "2012602261000095",
+      "unqualifiedQty": 550
+    },
+    {
+      "equipCode": "0625121820350001202508180001",
+      "arriveBatchNo": "2012602261000096",
+      "unqualifiedQty": 450
+    },
+    {
+      "equipCode": "072025121112230010000001",
+      "arriveBatchNo": "2012602261000097",
+      "unqualifiedQty": 350
+    },
+    {
+      "equipCode": "082512251013544",
+      "arriveBatchNo": "2012602261000098",
+      "unqualifiedQty": 550
+    }
+  ],
+  "orderContractDetList": [
+    {
+      "contractDetId": "202608121904004001",
+      "contractId": "202608121904004",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "materialNo": "012601200001",
+      "purchaseQty": 30000,
+      "arriveQty": 2000,
+      "supplierNo": "20260812001",
+      "supplierName": "浙江晨泰科技股份有限公司"
+    },
+    {
+      "contractDetId": "202608121904003001",
+      "contractId": "202608121904003",
+      "equipCateg": "1",
+      "equipCls": "1",
+      "materialNo": "012601200001",
+      "purchaseQty": 100000,
+      "arriveQty": 10000,
+      "supplierNo": "20260812002",
+      "supplierName": "烟台东方威思顿电气有限公司"
+    },
+    {
+      "contractDetId": "202608121904005001",
+      "contractId": "202608121904005",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "materialNo": "0225122202120001",
+      "purchaseQty": 10000,
+      "arriveQty": 500,
+      "supplierNo": "20260812003",
+      "supplierName": "杭州炬华科技股份有限公司"
+    },
+    {
+      "contractDetId": "202608121904003001",
+      "contractId": "202608121904003",
+      "equipCateg": "1",
+      "equipCls": "2",
+      "materialNo": "0226020309460001",
+      "purchaseQty": 10000,
+      "arriveQty": 1000,
+      "supplierNo": "20260812002",
+      "supplierName": "烟台东方威思顿电气有限公司"
+    },
+    {
+      "contractDetId": "202608121904006001",
+      "contractId": "202608121904006",
+      "equipCateg": "2",
+      "equipCls": "6",
+      "materialNo": "0625121820350001",
+      "purchaseQty": 10000,
+      "arriveQty": 2500,
+      "supplierNo": "20260812004",
+      "supplierName": "深圳深宝电器仪表有限公司"
+    },
+    {
+      "contractDetId": "202608121904001001",
+      "contractId": "202608121904001",
+      "equipCateg": "2",
+      "equipCls": "7",
+      "materialNo": "07202512111223001",
+      "purchaseQty": 10000,
+      "arriveQty": 3500,
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司"
+    },
+    {
+      "contractDetId": "202608121904001002",
+      "contractId": "202608121904001",
+      "equipCateg": "2",
+      "equipCls": "20",
+      "materialNo": "21202512111223003",
+      "purchaseQty": 1000,
+      "arriveQty": 550,
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司"
+    },
+    {
+      "contractDetId": "202608121904001003",
+      "contractId": "202608121904001",
+      "equipCateg": "2",
+      "equipCls": "21",
+      "materialNo": "20202512111223002",
+      "purchaseQty": 1000,
+      "arriveQty": 450,
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司"
+    },
+    {
+      "contractDetId": "202608121904001004",
+      "contractId": "202608121904001",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "materialNo": "0225121710170013",
+      "purchaseQty": 15000,
+      "arriveQty": 8000,
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司"
+    },
+    {
+      "contractDetId": "202608121904001005",
+      "contractId": "202608121904001",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "materialNo": "0225121710170014",
+      "purchaseQty": 1000,
+      "arriveQty": 500,
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司"
+    },
+    {
+      "contractDetId": "202608121904001006",
+      "contractId": "202608121904001",
+      "equipCateg": "2",
+      "equipCls": "8",
+      "materialNo": "0225121710170015",
+      "purchaseQty": 1000,
+      "arriveQty": 600,
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司"
+    },
+    {
+      "contractDetId": "202608121904002001",
+      "contractId": "202608121904002",
+      "equipCateg": "9",
+      "equipCls": "19",
+      "materialNo": "082510101226345",
+      "purchaseQty": 12000,
+      "arriveQty": 1000,
+      "supplierNo": "20260812016",
+      "supplierName": "威胜集团有限公司"
+    },
+    {
+      "contractDetId": "202608121904002002",
+      "contractId": "202608121904002",
+      "equipCateg": "9",
+      "equipCls": "19",
+      "materialNo": "082510101226346",
+      "purchaseQty": 9000,
+      "arriveQty": 200,
+      "supplierNo": "20260812016",
+      "supplierName": "威胜集团有限公司"
+    }
+  ],
+  "supplyNoticeDetList": [
+    {
+      "supplyNoticeDetId": "202608122006001001",
+      "supplyNoticeId": "202608122006001",
+      "supplierNo": "20260812002",
+      "supplierName": "烟台东方威思顿电气有限公司",
+      "contractDetId": "202608121904003001",
+      "materialNo": "012601200001",
+      "equipCode": "0126012000010001",
+      "supplyQty": 15000,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-05"
+    },
+    {
+      "supplyNoticeDetId": "202608122006002001",
+      "supplyNoticeId": "202608122006002",
+      "supplierNo": "20260812001",
+      "supplierName": "浙江晨泰科技股份有限公司",
+      "contractDetId": "202608121904004001",
+      "materialNo": "012601200001",
+      "equipCode": "0126012000010001",
+      "supplyQty": 5000,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-05"
+    },
+    {
+      "supplyNoticeDetId": "202608122006003001",
+      "supplyNoticeId": "202608122006003",
+      "supplierNo": "20260812003",
+      "supplierName": "杭州炬华科技股份有限公司",
+      "contractDetId": "202608121904005001",
+      "materialNo": "0225122202120001",
+      "equipCode": "0225122202120001",
+      "supplyQty": 2000,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-04"
+    },
+    {
+      "supplyNoticeDetId": "202608122006001002",
+      "supplyNoticeId": "202608122006001",
+      "supplierNo": "20260812002",
+      "supplierName": "烟台东方威思顿电气有限公司",
+      "contractDetId": "202608121904003001",
+      "materialNo": "0226020309460001",
+      "equipCode": "02260203094600010001",
+      "supplyQty": 1000,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-05"
+    },
+    {
+      "supplyNoticeDetId": "202608122006004001",
+      "supplyNoticeId": "202608122006004",
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司",
+      "contractDetId": "202608121904001004",
+      "materialNo": "0225121710170013",
+      "equipCode": "07251217161200010002329312",
+      "supplyQty": 1500,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-06"
+    },
+    {
+      "supplyNoticeDetId": "202608122006005001",
+      "supplyNoticeId": "202608122006005",
+      "supplierNo": "20260812004",
+      "supplierName": "深圳深宝电器仪表有限公司",
+      "contractDetId": "202608121904006001",
+      "materialNo": "0625121820350001",
+      "equipCode": "0625121820350001202508180001",
+      "supplyQty": 1000,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-06"
+    },
+    {
+      "supplyNoticeDetId": "202608122006004002",
+      "supplyNoticeId": "202608122006004",
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司",
+      "contractDetId": "202608121904001001",
+      "materialNo": "07202512111223001",
+      "equipCode": "072025121112230010000001",
+      "supplyQty": 400,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-06"
+    },
+    {
+      "supplyNoticeDetId": "202608122006006001",
+      "supplyNoticeId": "202608122006006",
+      "supplierNo": "20260812016",
+      "supplierName": "威胜集团有限公司",
+      "contractDetId": "202608121904002001",
+      "materialNo": "082510101226345",
+      "equipCode": "082512251013544",
+      "supplyQty": 1100,
+      "inWhQty": 0,
+      "reqArriveDate": "2026-03-04"
+    }
+  ],
+  "supplierConfigList": [
+    {
+      "supplierNo": "20260812001",
+      "supplierName": "浙江晨泰科技股份有限公司",
+      "stockCycle": 5,
+      "transitTime": 2,
+      "overallScore": 98.5,
+      "weekMaxCount": 2,
+      "monthMaxCount": 4
+    },
+    {
+      "supplierNo": "20260812002",
+      "supplierName": "烟台东方威思顿电气有限公司",
+      "stockCycle": 7,
+      "transitTime": 3,
+      "overallScore": 97.9,
+      "weekMaxCount": 1,
+      "monthMaxCount": 4
+    },
+    {
+      "supplierNo": "20260812003",
+      "supplierName": "杭州炬华科技股份有限公司",
+      "stockCycle": 4,
+      "transitTime": 4,
+      "overallScore": 97.25,
+      "weekMaxCount": 1,
+      "monthMaxCount": 4
+    },
+    {
+      "supplierNo": "20260812004",
+      "supplierName": "深圳深宝电器仪表有限公司",
+      "stockCycle": 6,
+      "transitTime": 3,
+      "overallScore": 97.25,
+      "weekMaxCount": 1,
+      "monthMaxCount": 4
+    },
+    {
+      "supplierNo": "20260812005",
+      "supplierName": "广东四会互感器厂有限公司",
+      "stockCycle": 4,
+      "transitTime": 2,
+      "overallScore": 97.3,
+      "weekMaxCount": 1,
+      "monthMaxCount": 4
+    },
+    {
+      "supplierNo": "20260812016",
+      "supplierName": "威胜集团有限公司",
+      "stockCycle": 4,
+      "transitTime": 3,
+      "overallScore": 97.85,
+      "weekMaxCount": 1,
+      "monthMaxCount": 4
+    }
+  ],
+  "whAreaConfigList": [
+    {
+      "whAreaId": 1,
+      "whAreaName": "计量管理所待检仓",
+      "whAreaType": "01",
+      "whAreaCap": 100000,
+      "inStockQty": 10000,
+      "arriveBatchQty": 3
+    }
+  ],
+  "scheduleTimeList": [
+    {
+      "workDay": "2026-03-02",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-03",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-04",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-05",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-06",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-09",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-10",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-11",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-12",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-13",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-16",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-17",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-18",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-19",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-20",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-23",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-24",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-25",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-26",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-27",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-30",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-03-31",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-01",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-02",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-03",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-07",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-08",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-09",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-10",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-13",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-14",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-15",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-16",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-17",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-20",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-21",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-22",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-23",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-24",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-27",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-28",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-29",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    },
+    {
+      "workDay": "2026-04-30",
+      "startTime": "09:00",
+      "endTime": "17:00"
+    }
+  ]
+}
